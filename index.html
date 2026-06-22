@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vernissage — L'actualité de l'art, sans filtre</title>
+<style>
+  :root{
+    --noir: #0d0c0a;
+    --noir-2: #16140f;
+    --ivoire: #ece6d8;
+    --or: #c9a24b;
+    --or-clair: #e3c578;
+    --gris: #8a8478;
+    --rouge-encheres: #7a2e2e;
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--noir);
+    color:var(--ivoire);
+    font-family:var(--sans);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(13,12,10,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(201,162,75,0.25);
+  }
+  .nav{
+    max-width:1180px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px;
+  }
+  .logo{
+    font-family:var(--serif);
+    font-size:28px; font-weight:900;
+    letter-spacing:0.5px;
+    color:var(--ivoire);
+  }
+  .logo span{color:var(--or);font-style:italic;}
+  .nav-links{display:flex; gap:36px; font-size:13px; letter-spacing:1.5px; text-transform:uppercase;}
+  .nav-links a{color:var(--gris); transition:color .25s;}
+  .nav-links a:hover{color:var(--or-clair);}
+  .nav-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    padding:90px 24px 70px;
+    max-width:1180px; margin:0 auto;
+    border-bottom:1px solid rgba(201,162,75,0.18);
+  }
+  .hero-eyebrow{
+    font-size:12px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--or); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{
+    content:''; width:36px; height:1px; background:var(--or);
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-size:clamp(40px, 7vw, 86px);
+    font-weight:900;
+    line-height:1.02;
+    max-width:880px;
+    letter-spacing:-1px;
+  }
+  .hero h1 em{font-style:italic; color:var(--or-clair); font-weight:500;}
+  .hero p{
+    margin-top:26px; max-width:560px; color:var(--gris); font-size:17px; font-weight:300;
+  }
+  .hero-meta{
+    margin-top:40px; display:flex; gap:40px; flex-wrap:wrap;
+  }
+  .hero-meta div{font-size:12px; color:var(--gris); letter-spacing:1px; text-transform:uppercase;}
+  .hero-meta strong{display:block; font-family:var(--serif); font-size:22px; color:var(--ivoire); font-weight:700; margin-bottom:4px; letter-spacing:0;text-transform:none;}
+
+  /* ===== SECTION TITLES ===== */
+  .section{max-width:1180px; margin:0 auto; padding:80px 24px;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:46px; border-bottom:1px solid rgba(201,162,75,0.2); padding-bottom:20px;
+    flex-wrap:wrap; gap:12px;
+  }
+  .section-head h2{
+    font-family:var(--serif); font-size:34px; font-weight:700; letter-spacing:-0.5px;
+  }
+  .section-head .lot-number{
+    font-size:12px; color:var(--or); letter-spacing:2px; text-transform:uppercase;
+  }
+
+  /* ===== NEWS GRID (lots de la criée) ===== */
+  #news-status{color:var(--gris); font-size:14px; margin-bottom:30px; font-style:italic;}
+  .news-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(201,162,75,0.18);}
+  .news-card{
+    background:var(--noir); transition:background .3s;
+    display:flex; flex-direction:column;
+  }
+  .news-card:hover{background:var(--noir-2);}
+  .news-img{
+    width:100%; aspect-ratio:16/10; background-size:cover; background-position:center;
+    background-color:#1c1812;
+  }
+  .news-img-empty{
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(201,162,75,0.45);
+    background:linear-gradient(135deg,#1c1812,#241d14);
+  }
+  .news-card-body{padding:28px 28px 32px; display:flex; flex-direction:column; flex-grow:1; min-height:200px;}
+  .news-card .lot{font-size:11px; letter-spacing:2px; color:var(--or); margin-bottom:14px;}
+  .news-card h3{
+    font-family:var(--serif); font-size:20px; font-weight:600; line-height:1.25; margin-bottom:14px;
+  }
+  .news-card p{color:var(--gris); font-size:14px; font-weight:300; flex-grow:1;}
+  .news-card .src{
+    margin-top:18px; font-size:12px; color:var(--or-clair); letter-spacing:1px;
+    display:flex; justify-content:space-between; text-transform:uppercase;
+  }
+
+  /* ===== SHOP ===== */
+  .shop-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+  .piece{
+    border:1px solid rgba(201,162,75,0.22); padding:0; position:relative; overflow:hidden;
+    transition:border-color .3s;
+  }
+  .piece:hover{border-color:var(--or);}
+  .piece-img{
+    width:100%; aspect-ratio:4/5;
+    background:linear-gradient(160deg,#241d14 0%, #2f2517 45%, #1a150e 100%);
+    display:flex; align-items:center; justify-content:center; position:relative;
+    font-family:var(--serif); color:rgba(201,162,75,0.55); font-size:14px; letter-spacing:1px; text-align:center; padding:24px;
+  }
+  .piece-img::before{
+    content:''; position:absolute; inset:14px; border:1px solid rgba(201,162,75,0.25);
+  }
+  .piece-info{padding:20px;}
+  .piece-info .cat{font-size:11px; color:var(--or); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px;}
+  .piece-info h4{font-family:var(--serif); font-size:18px; font-weight:600; margin-bottom:10px;}
+  .piece-info .price{color:var(--ivoire); font-size:15px; margin-bottom:16px;}
+  .btn-bid{
+    display:inline-block; width:100%; text-align:center; padding:12px 0;
+    border:1px solid var(--or); color:var(--or-clair); font-size:12px; letter-spacing:2px;
+    text-transform:uppercase; transition:all .25s;
+  }
+  .btn-bid:hover{background:var(--or); color:var(--noir);}
+
+  /* ===== HOW TO / FOOTER NOTE ===== */
+  .note{
+    max-width:1180px; margin:0 auto; padding:0 24px 60px;
+    color:var(--gris); font-size:13px; font-weight:300; border-top:1px solid rgba(201,162,75,0.15); padding-top:30px;
+  }
+
+  footer{
+    border-top:1px solid rgba(201,162,75,0.2); padding:50px 24px; text-align:center;
+    color:var(--gris); font-size:13px;
+  }
+  footer .logo{display:block; margin-bottom:10px;}
+
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .news-grid{grid-template-columns:1fr;}
+    .shop-grid{grid-template-columns:repeat(2,1fr);}
+    .hero-meta{gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Vernissage<span>.</span></div>
+    <nav class="nav-links">
+      <a href="#actualites">Actualités</a>
+      <a href="#boutique">Boutique</a>
+      <a href="#apropos">À propos</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Édition du jour</div>
+  <h1>L'art ne se résume pas. <em>Il se vit.</em></h1>
+  <p>Vernissage rassemble en temps réel les actualités les plus fiables du monde de l'art — marché, expositions, ventes aux enchères — directement depuis les rédactions qui font autorité.</p>
+  <div class="hero-meta">
+    <div><strong id="meta-count">—</strong>Brèves en ligne</div>
+    <div><strong>5</strong>Sources vérifiées</div>
+    <div><strong id="meta-time">—</strong>Dernière mise à jour</div>
+  </div>
+</section>
+
+<section class="section" id="actualites">
+  <div class="section-head">
+    <h2>Salle des ventes — actualités</h2>
+    <span class="lot-number">Flux en direct, sources citées</span>
+  </div>
+  <div id="news-status">Chargement des dernières actualités…</div>
+  <div class="news-grid" id="news-grid"></div>
+</section>
+
+<section class="section" id="boutique">
+  <div class="section-head">
+    <h2>La galerie — boutique</h2>
+    <span class="lot-number">Impressions d'art • Redbubble</span>
+  </div>
+  <div class="shop-grid" id="shop-grid"></div>
+</section>
+
+<div class="note">
+  <strong>Note d'édition —</strong> Les articles affichés sont importés directement des flux RSS officiels des médias cités, sans réécriture ni génération artificielle : ce que vous lisez ici est exactement ce qui a été publié par la source. La boutique redirige vers des places de marché externes pour la production et la livraison.
+</div>
+
+<footer>
+  <div class="logo">Vernissage<span style="color:var(--or)">.</span></div>
+  © 2026 Vernissage — Le quotidien de l'art.
+</footer>
+
+<script>
+/* ---------- ACTUALITÉS : flux RSS réels via rss2json (gratuit) ---------- */
+const FEEDS = [
+  { name: "Artnet News", url: "https://news.artnet.com/feed", tag:"Marché & ventes" },
+  { name: "Hyperallergic", url: "https://hyperallergic.com/feed/", tag:"Art en général" },
+  { name: "The Art Newspaper", url: "https://www.theartnewspaper.com/rss/news", tag:"Ventes & musées" },
+  { name: "Artforum", url: "https://www.artforum.com/feed/news/", tag:"Art contemporain" },
+  { name: "ArtReview", url: "https://artreview.com/feed/", tag:"Art moderne" },
+  { name: "Juxtapoz", url: "https://www.juxtapoz.com/feed/", tag:"Street art" },
+  { name: "Street Art News", url: "https://streetartnews.net/feed", tag:"Street art" },
+  { name: "Widewalls", url: "https://www.widewalls.ch/feed", tag:"Art urbain" }
+];
+/* Note : Christie's et Sotheby's ne publient pas de flux RSS public officiel.
+   Leurs ventes record sont en revanche systématiquement couvertes par Artnet,
+   The Art Newspaper et Artforum ci-dessus, donc ces actus remontent déjà. */
+
+async function loadNews(){
+  const grid = document.getElementById('news-grid');
+  const status = document.getElementById('news-status');
+  let allItems = [];
+  let okCount = 0;
+
+  await Promise.all(FEEDS.map(async feed => {
+    try{
+      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed.url));
+      const data = await res.json();
+      if(data.status === 'ok' && data.items && data.items.length){
+        okCount++;
+        data.items.slice(0,4).forEach(item=>{
+          // rss2json expose l'image soit en thumbnail, soit dans enclosure, soit dans le HTML de la description
+          let img = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
+          if(!img){
+            const match = (item.description||'').match(/<img[^>]+src="([^">]+)"/);
+            if(match) img = match[1];
+          }
+          allItems.push({
+            title: item.title,
+            desc: (item.description||'').replace(/<[^>]*>/g,'').slice(0,140) + '…',
+            link: item.link,
+            source: feed.name,
+            tag: feed.tag,
+            img: img,
+            date: item.pubDate
+          });
+        });
+      }
+    }catch(e){ /* source indisponible, on ignore silencieusement */ }
+  }));
+
+  allItems.sort((a,b)=> new Date(b.date) - new Date(a.date));
+
+  if(allItems.length === 0){
+    status.textContent = "Les flux sont temporairement indisponibles. Réessayez dans un instant.";
+    return;
+  }
+
+  status.textContent = `${allItems.length} brèves récupérées depuis ${okCount} sources — mise à jour automatique à chaque visite.`;
+  document.getElementById('meta-count').textContent = allItems.length;
+  document.getElementById('meta-time').textContent = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+
+  grid.innerHTML = allItems.slice(0,15).map((item, i)=>`
+    <a class="news-card" href="${item.link}" target="_blank" rel="noopener">
+      ${item.img
+        ? `<div class="news-img" style="background-image:url('${item.img}')"></div>`
+        : `<div class="news-img news-img-empty">${item.tag}</div>`
+      }
+      <div class="news-card-body">
+        <div class="lot">${item.tag.toUpperCase()} — LOT ${String(i+1).padStart(2,'0')}</div>
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+        <div class="src"><span>${item.source}</span><span>↗</span></div>
+      </div>
+    </a>
+  `).join('');
+}
+loadNews();
+
+/* ---------- BOUTIQUE : exemples reliés à Redbubble ---------- */
+const PIECES = [
+  { cat:"Impression giclée", name:"Étude en bleu de Prusse", price:"à partir de 24 €", q:"abstract blue art print" },
+  { cat:"Affiche", name:"Nature morte minimale", price:"à partir de 18 €", q:"minimalist still life poster" },
+  { cat:"Toile", name:"Paysage onirique", price:"à partir de 45 €", q:"dreamlike landscape canvas art" },
+  { cat:"Impression giclée", name:"Composition géométrique", price:"à partir de 22 €", q:"geometric abstract art print" }
+];
+
+document.getElementById('shop-grid').innerHTML = PIECES.map(p=>`
+  <div class="piece">
+    <div class="piece-img">${p.name}</div>
+    <div class="piece-info">
+      <div class="cat">${p.cat}</div>
+      <h4>${p.name}</h4>
+      <div class="price">${p.price}</div>
+      <a class="btn-bid" href="https://www.redbubble.com/shop?query=${encodeURIComponent(p.q)}" target="_blank" rel="noopener">Voir sur Redbubble</a>
+    </div>
+  </div>
+`).join('');
+</script>
+
+</body>
+</html>
