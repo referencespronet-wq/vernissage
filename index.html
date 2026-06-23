@@ -1,18 +1,57 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vernissage — L'actualité de l'art, sans filtre</title>
+<title>Vernissage — Unfiltered Art World News</title>
+<link rel="alternate" hreflang="fr" href="index.html">
+<link rel="alternate" hreflang="en" href="index-en.html">
+<link rel="alternate" hreflang="x-default" href="index.html">
+<link rel="canonical" href="index-en.html">
+
+<!-- Favicon intégré directement dans la page (aucun fichier séparé) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxNzBiMjQiLz4KICA8cGF0aCBkPSJNMTQgMTYgTDMyIDUwIEw1MCAxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZjMTRkIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9IjMyIiBjeT0iNTAiIHI9IjMuNSIgZmlsbD0iI2ZmNWQ4ZiIvPgogIDxjaXJjbGUgY3g9IjQ4IiBjeT0iMjAiIHI9IjMiIGZpbGw9IiMxZmQzYTIiLz4KPC9zdmc+Cg==">
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vernissage">
+<meta property="og:title" content="Vernissage — Unfiltered Art World News">
+<meta property="og:description" content="Real-time art world news, exhibitions, auction calendar and emerging artists — pulled live from trusted sources, no fakes.">
+<meta property="og:url" content="https://tonpseudo.github.io/vernissage/index-en.html">
+<meta property="og:image" content="https://tonpseudo.github.io/vernissage/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vernissage — Unfiltered Art World News">
+<meta name="twitter:description" content="Real-time art world news, exhibitions, auction calendar and emerging artists — pulled live from trusted sources, no fakes.">
+<meta name="twitter:image" content="https://tonpseudo.github.io/vernissage/og-image.jpg">
+
+<!-- SEO de base -->
+<meta name="description" content="Real-time art world news, exhibitions, auction calendar and emerging artists — pulled live from trusted sources, no fakes.">
+
 <style>
   :root{
-    --noir: #0d0c0a;
-    --noir-2: #16140f;
-    --ivoire: #ece6d8;
-    --or: #c9a24b;
-    --or-clair: #e3c578;
-    --gris: #8a8478;
-    --rouge-encheres: #7a2e2e;
+    /* Palette "atelier" : fond profond violine, accents fluo façon affiche d'expo */
+    --noir: #170b24;
+    --noir-2: #20102f;
+    --ivoire: #f6efe4;
+    --or: #ff8a3d;
+    --or-clair: #ffc14d;
+    --gris: #b7a8c9;
+    --rouge-encheres: #ff4d6d;
+    --emeraude: #1fd3a2;
+    --saphir: #4d9bff;
+    --rubis: #ff5d8f;
+    --ocre: #ffb238;
+    --cobalt: #5b6bff;
+    --vert-de-vessie: #1fd3a2;
+    --garance: #ff4d6d;
+    --terre-de-sienne: #ff8a3d;
+    --outremer: #9b5cff;
     --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
     --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   }
@@ -31,64 +70,144 @@
   /* ===== HEADER ===== */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(13,12,10,0.92);
+    background:rgba(23,11,36,0.85);
     backdrop-filter:blur(8px);
-    border-bottom:1px solid rgba(201,162,75,0.25);
+    border-bottom:1px solid rgba(255,138,61,0.25);
   }
   .nav{
-    max-width:1180px; margin:0 auto;
+    max-width:1300px; margin:0 auto;
     display:flex; align-items:center; justify-content:space-between;
-    padding:20px 24px;
+    padding:18px 24px; gap:24px;
   }
   .logo{
     font-family:var(--serif);
     font-size:28px; font-weight:900;
     letter-spacing:0.5px;
     color:var(--ivoire);
+    flex-shrink:0;
   }
-  .logo span{color:var(--or);font-style:italic;}
-  .nav-links{display:flex; gap:36px; font-size:13px; letter-spacing:1.5px; text-transform:uppercase;}
-  .nav-links a{color:var(--gris); transition:color .25s;}
+  .logo span{color:var(--or); font-style:italic; background:linear-gradient(90deg,var(--rubis),var(--ocre)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .nav-links{display:flex; flex:1; justify-content:center; gap:26px; font-size:12px; letter-spacing:1.2px; text-transform:uppercase; align-items:center; flex-wrap:wrap;}
+  .lang-switch{
+    padding:6px 14px; border:1px solid rgba(255,138,61,0.4); border-radius:999px;
+    font-size:11px; letter-spacing:1px; color:var(--gris) !important; transition:all .2s;
+    flex-shrink:0; margin-left:8px; background:none; cursor:pointer; font-family:var(--sans);
+  }
+  .lang-switch:hover{border-color:var(--or); color:var(--or-clair) !important;}
+  .nav-links a{color:var(--gris); transition:color .25s; white-space:nowrap;}
   .nav-links a:hover{color:var(--or-clair);}
   .nav-toggle{display:none;}
 
-  /* ===== HERO ===== */
+  /* ===== HERO PARALLAX ===== */
   .hero{
     position:relative;
-    padding:90px 24px 70px;
-    max-width:1180px; margin:0 auto;
-    border-bottom:1px solid rgba(201,162,75,0.18);
+    height:100vh; min-height:560px;
+    overflow:hidden;
+    border-bottom:1px solid rgba(255,138,61,0.25);
+    display:flex; align-items:center;
+    background:linear-gradient(135deg,#bfe0ff 0%, #4d9bff 45%, #2451d6 100%);
+    perspective:1200px;
+  }
+  .hero-bg-layer{
+    position:absolute; inset:-15%; will-change:transform;
+    pointer-events:none;
+  }
+  #layer-far{
+    background:
+      radial-gradient(circle at 85% 25%, rgba(255,255,255,0.35) 0%, transparent 45%),
+      radial-gradient(circle at 10% 80%, rgba(36,81,214,0.55) 0%, transparent 50%);
+    filter:blur(70px) saturate(1.2);
+    opacity:1;
+    transition:transform .15s ease-out;
+    animation:driftFar 22s ease-in-out infinite alternate;
+  }
+  #layer-mid{
+    background:
+      radial-gradient(circle at 70% 65%, rgba(255,255,255,0.25) 0%, transparent 40%),
+      radial-gradient(circle at 25% 20%, rgba(77,155,255,0.4) 0%, transparent 40%);
+    filter:blur(36px) saturate(1.3);
+    mix-blend-mode:screen;
+    transition:transform .1s ease-out;
+    animation:driftMid 16s ease-in-out infinite alternate;
+  }
+  @keyframes driftFar{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(2%,-2%) scale(1.06);}
+  }
+  @keyframes driftMid{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(-3%,2%) scale(1.04);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    #layer-far, #layer-mid{ animation:none; }
+  }
+  .hero-readability{
+    position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:linear-gradient(100deg, rgba(20,40,110,0.35) 0%, rgba(20,40,110,0.12) 45%, rgba(20,40,110,0) 75%);
+  }
+
+  /* ===== FORMES : composition SVG peinte à la main, déformée par filtre ===== */
+  .hero-shapes{
+    position:absolute; inset:0; z-index:3; pointer-events:none;
+  }
+  .hero-shapes svg{ width:100%; height:100%; display:block; }
+  .shape-g{ transform-box:fill-box; transform-origin:center; transition:transform .18s ease-out; will-change:transform; }
+
+  @media (max-width:900px){
+    .hero-shapes svg{ transform:scale(0.7) translateX(8%); }
+  }
+  .hero-content{
+    position:relative; z-index:5;
+    max-width:1180px; margin:0 auto; padding:0 24px; width:100%;
+    transform-style:preserve-3d; will-change:transform;
+    transition:transform .12s ease-out;
   }
   .hero-eyebrow{
     font-size:12px; letter-spacing:3px; text-transform:uppercase;
-    color:var(--or); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+    color:#fdfff0; margin-bottom:18px; display:flex; align-items:center; gap:10px;
   }
   .hero-eyebrow::before{
-    content:''; width:36px; height:1px; background:var(--or);
+    content:''; width:36px; height:1px; background:#e8ff3c;
   }
   .hero h1{
-    font-family:var(--serif);
-    font-size:clamp(40px, 7vw, 86px);
-    font-weight:900;
-    line-height:1.02;
-    max-width:880px;
-    letter-spacing:-1px;
+    font-family:var(--sans);
+    font-size:clamp(44px, 8vw, 100px);
+    font-weight:800;
+    line-height:0.96;
+    max-width:920px;
+    letter-spacing:-2px;
+    color:#e8ff3c;
+    text-shadow:0 4px 30px rgba(20,40,110,0.25);
   }
-  .hero h1 em{font-style:italic; color:var(--or-clair); font-weight:500;}
+  .hero h1 em{font-style:normal; font-weight:900; color:#e8ff3c;}
   .hero p{
-    margin-top:26px; max-width:560px; color:var(--gris); font-size:17px; font-weight:300;
+    margin-top:26px; max-width:560px; color:#0c2a78; font-size:17px; font-weight:500;
   }
   .hero-meta{
     margin-top:40px; display:flex; gap:40px; flex-wrap:wrap;
   }
-  .hero-meta div{font-size:12px; color:var(--gris); letter-spacing:1px; text-transform:uppercase;}
-  .hero-meta strong{display:block; font-family:var(--serif); font-size:22px; color:var(--ivoire); font-weight:700; margin-bottom:4px; letter-spacing:0;text-transform:none;}
+  .hero-meta div{font-size:12px; letter-spacing:1px; text-transform:uppercase;}
+  .hero-meta strong{display:block; font-family:var(--serif); font-size:22px; font-weight:700; margin-bottom:4px; letter-spacing:0; text-transform:none;}
+  .jewel-gold{color:var(--gris);} .jewel-gold strong{color:var(--or-clair);}
+  .jewel-emerald-text{color:var(--gris);} .jewel-emerald-text strong{color:var(--emeraude); filter:brightness(1.3);}
+  .jewel-sapphire{color:var(--gris);} .jewel-sapphire strong{color:var(--saphir); filter:brightness(1.3);}
+  .hero-scroll-cue{
+    position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+    font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#0c2a78;
+    z-index:5; animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,8px);}}
+  @media (prefers-reduced-motion: reduce){
+    .hero-bg-layer{transform:none !important;}
+    .hero-scroll-cue{animation:none;}
+  }
+
 
   /* ===== SECTION TITLES ===== */
   .section{max-width:1180px; margin:0 auto; padding:80px 24px;}
   .section-head{
     display:flex; justify-content:space-between; align-items:baseline;
-    margin-bottom:46px; border-bottom:1px solid rgba(201,162,75,0.2); padding-bottom:20px;
+    margin-bottom:46px; border-bottom:1px solid rgba(255,138,61,0.2); padding-bottom:20px;
     flex-wrap:wrap; gap:12px;
   }
   .section-head h2{
@@ -100,20 +219,79 @@
 
   /* ===== NEWS GRID (lots de la criée) ===== */
   #news-status{color:var(--gris); font-size:14px; margin-bottom:30px; font-style:italic;}
-  .news-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(201,162,75,0.18);}
+
+  /* ===== JEUNES ARTISTES ===== */
+  .news-status{color:var(--gris); font-size:14px; margin-bottom:30px; font-style:italic;}
+  .jewel-emerald{color:var(--emeraude) !important;}
+  .jewel-sapphire-text{color:var(--saphir) !important;}
+  .jewel-garance{color:var(--garance) !important;}
+
+  .sales-list{display:flex; flex-direction:column; gap:1px; background:rgba(255,138,61,0.18);}
+  .sale-row{
+    background:var(--noir); padding:22px 26px; display:flex; align-items:center; gap:24px;
+    transition:background .3s;
+  }
+  .sale-row:hover{background:var(--noir-2);}
+  .sale-date{
+    min-width:110px; font-family:var(--serif); font-size:15px; color:var(--or-clair);
+    font-weight:600; letter-spacing:0.5px;
+  }
+  .sale-info{flex-grow:1;}
+  .sale-info h3{font-size:16px; font-weight:600; margin-bottom:4px; font-family:var(--serif);}
+  .sale-info p{font-size:12px; color:var(--gris);}
+  .sale-link{font-size:11px; color:var(--garance); letter-spacing:1px; text-transform:uppercase; white-space:nowrap;}
+  .expo-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .expo-card{
+    display:flex; flex-direction:column; border:1px solid rgba(255,138,61,0.15);
+    transition:border-color .3s, transform .3s;
+  }
+  .expo-card:hover{border-color:var(--saphir); transform:translateY(-4px);}
+  .expo-img{width:100%; aspect-ratio:4/3; background-color:#241433; overflow:hidden; position:relative;}
+  .expo-img img, .young-img img, .news-img img, .piece-img img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    position:relative; z-index:1;
+  }
+  .expo-img::before, .young-img::before, .news-img::before, .piece-img::before{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(100deg, rgba(255,138,61,0.06) 0%, rgba(255,138,61,0.18) 50%, rgba(255,138,61,0.06) 100%);
+    background-size:200% 100%;
+    animation:shimmer 1.4s ease-in-out infinite;
+  }
+  .expo-body{padding:22px;}
+  .expo-body h3{font-family:var(--serif); font-size:17px; font-weight:600; margin-bottom:10px; line-height:1.3;}
+  .expo-body p{color:var(--gris); font-size:13px; font-weight:300; margin-bottom:14px;}
+  .expo-body .src{font-size:11px; color:var(--saphir); filter:brightness(1.5); letter-spacing:1px; text-transform:uppercase; display:flex; justify-content:space-between;}
+  .young-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .young-card{
+    display:flex; flex-direction:column; border:1px solid rgba(255,138,61,0.15);
+    transition:border-color .3s, transform .3s;
+  }
+  .young-card:hover{border-color:var(--emeraude); transform:translateY(-4px);}
+  .young-img{width:100%; aspect-ratio:1/1; background-color:#241433; overflow:hidden; position:relative;}
+  @keyframes shimmer{0%{background-position:200% 0;} 100%{background-position:-200% 0;}}
+  .young-body{padding:22px;}
+  .young-body h3{font-family:var(--serif); font-size:17px; font-weight:600; margin-bottom:10px; line-height:1.3;}
+  .young-body p{color:var(--gris); font-size:13px; font-weight:300; margin-bottom:14px;}
+  .young-body .src{font-size:11px; color:var(--emeraude); letter-spacing:1px; text-transform:uppercase; display:flex; justify-content:space-between;}
+
+  .img-fallback{
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,#241433,#2e1846) !important;
+  }
+  .img-fallback img{display:none;}
+  .news-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,138,61,0.18);}
   .news-card{
     background:var(--noir); transition:background .3s;
     display:flex; flex-direction:column;
   }
   .news-card:hover{background:var(--noir-2);}
   .news-img{
-    width:100%; aspect-ratio:16/10; background-size:cover; background-position:center;
-    background-color:#1c1812;
+    width:100%; aspect-ratio:16/10; background-color:#241433; overflow:hidden; position:relative;
   }
   .news-img-empty{
     display:flex; align-items:center; justify-content:center;
-    font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(201,162,75,0.45);
-    background:linear-gradient(135deg,#1c1812,#241d14);
+    font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,138,61,0.45);
+    background:linear-gradient(135deg,#241433,#2e1846);
   }
   .news-card-body{padding:28px 28px 32px; display:flex; flex-direction:column; flex-grow:1; min-height:200px;}
   .news-card .lot{font-size:11px; letter-spacing:2px; color:var(--or); margin-bottom:14px;}
@@ -129,23 +307,20 @@
   /* ===== SHOP ===== */
   .shop-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
   .piece{
-    border:1px solid rgba(201,162,75,0.22); padding:0; position:relative; overflow:hidden;
+    border:1px solid rgba(255,138,61,0.22); padding:0; position:relative; overflow:hidden;
     transition:border-color .3s;
   }
   .piece:hover{border-color:var(--or);}
   .piece-img{
     width:100%; aspect-ratio:4/5;
-    background:linear-gradient(160deg,#241d14 0%, #2f2517 45%, #1a150e 100%);
-    display:flex; align-items:center; justify-content:center; position:relative;
-    font-family:var(--serif); color:rgba(201,162,75,0.55); font-size:14px; letter-spacing:1px; text-align:center; padding:24px;
-  }
-  .piece-img::before{
-    content:''; position:absolute; inset:14px; border:1px solid rgba(201,162,75,0.25);
+    background-color:#241433; position:relative; overflow:hidden;
   }
   .piece-info{padding:20px;}
   .piece-info .cat{font-size:11px; color:var(--or); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px;}
-  .piece-info h4{font-family:var(--serif); font-size:18px; font-weight:600; margin-bottom:10px;}
+  .piece-info h4{font-family:var(--serif); font-size:18px; font-weight:600; margin-bottom:4px;}
+  .piece-info .artist{font-size:12px; color:var(--gris); font-style:italic; margin-bottom:12px;}
   .piece-info .price{color:var(--ivoire); font-size:15px; margin-bottom:16px;}
+  .piece-info .credit{font-size:10px; color:var(--gris); margin-top:10px; text-align:center; letter-spacing:0.5px;}
   .btn-bid{
     display:inline-block; width:100%; text-align:center; padding:12px 0;
     border:1px solid var(--or); color:var(--or-clair); font-size:12px; letter-spacing:2px;
@@ -153,23 +328,130 @@
   }
   .btn-bid:hover{background:var(--or); color:var(--noir);}
 
+  /* ===== ARTICLE ÉDITORIAL ===== */
+  .editorial{
+    max-width:760px; position:relative; padding-left:28px;
+    border-left:3px solid transparent;
+    border-image:linear-gradient(180deg,var(--rubis),var(--ocre),var(--emeraude)) 1;
+  }
+  .editorial-centered{
+    margin:0 auto; text-align:center;
+    border-left:none; border-image:none; padding-left:0;
+  }
+  .editorial-centered .lead, .editorial-centered p{margin-left:auto; margin-right:auto;}
+  .editorial-centered .editorial-sources{border-top:1px dashed rgba(255,138,61,0.3); text-align:center;}
+  .editorial .lead{
+    font-family:var(--serif); font-size:19px; font-weight:500; color:var(--ivoire);
+    margin-bottom:20px; line-height:1.6;
+  }
+  .editorial p{color:var(--gris); font-size:15px; font-weight:300; margin-bottom:18px;}
+  .editorial p em{font-style:italic;}
+  .editorial-sources{
+    margin-top:26px; padding-top:18px; border-top:1px dashed rgba(255,138,61,0.3);
+    font-size:12px; color:var(--gris); letter-spacing:0.3px;
+  }
+  .editorial-sources strong{color:var(--or-clair);}
+
   /* ===== HOW TO / FOOTER NOTE ===== */
   .note{
     max-width:1180px; margin:0 auto; padding:0 24px 60px;
-    color:var(--gris); font-size:13px; font-weight:300; border-top:1px solid rgba(201,162,75,0.15); padding-top:30px;
+    color:var(--gris); font-size:13px; font-weight:300; border-top:1px solid rgba(255,138,61,0.15); padding-top:30px;
   }
 
   footer{
-    border-top:1px solid rgba(201,162,75,0.2); padding:50px 24px; text-align:center;
+    border-top:1px solid rgba(255,138,61,0.2); padding:50px 24px; text-align:center;
     color:var(--gris); font-size:13px;
   }
   footer .logo{display:block; margin-bottom:10px;}
 
+  /* ===== MOT DU JOUR ===== */
+  .word-of-day{
+    max-width:1180px; margin:0 auto; padding:60px 24px;
+    border-top:1px solid rgba(255,138,61,0.2);
+  }
+  .word-of-day-inner{max-width:640px; margin:0 auto; text-align:center;}
+
+  /* ===== NEWSLETTER ===== */
+  .newsletter{
+    max-width:1180px; margin:0 auto; padding:70px 24px 90px;
+    border-top:1px solid rgba(255,138,61,0.2);
+  }
+  .newsletter-box{
+    max-width:620px; margin:0 auto; text-align:center;
+    background:linear-gradient(160deg, rgba(255,138,61,0.12), rgba(155,92,255,0.10));
+    border:1px solid rgba(255,138,61,0.25);
+    border-radius:18px; padding:44px 36px;
+  }
+  .newsletter-box h3{
+    font-family:var(--serif); font-size:26px; font-weight:700; margin-bottom:10px; color:var(--ivoire);
+  }
+  .newsletter-box p{color:var(--gris); font-size:14px; font-weight:300; margin-bottom:26px;}
+  .newsletter-form{
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+  }
+  .newsletter-form input[type="email"]{
+    flex:1 1 260px; min-width:0; padding:14px 18px;
+    border:1px solid rgba(255,138,61,0.35); border-radius:999px;
+    background:rgba(23,11,36,0.6); color:var(--ivoire); font-size:14px; font-family:var(--sans);
+    outline:none; transition:border-color .25s;
+  }
+  .newsletter-form input[type="email"]::placeholder{color:var(--gris);}
+  .newsletter-form input[type="email"]:focus{border-color:var(--or);}
+  .newsletter-form button{
+    padding:14px 28px; border:none; border-radius:999px; cursor:pointer;
+    background:linear-gradient(90deg,var(--rubis),var(--ocre)); color:#170b24;
+    font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+    transition:transform .2s, opacity .2s;
+  }
+  .newsletter-form button:hover{transform:translateY(-2px);}
+  .newsletter-note{margin-top:16px; font-size:11px; color:var(--gris); letter-spacing:0.3px;}
+
+  /* ===== COOKIE BANNER ===== */
+  .cookie-banner{
+    position:fixed; left:0; right:0; bottom:0; z-index:200;
+    background:rgba(23,11,36,0.97); backdrop-filter:blur(10px);
+    border-top:1px solid rgba(255,138,61,0.3);
+    padding:20px 24px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+    transform:translateY(110%); transition:transform .4s ease;
+  }
+  .cookie-banner.visible{transform:translateY(0);}
+  .cookie-text{flex:1 1 380px; min-width:0; color:var(--gris); font-size:13px; line-height:1.6;}
+  .cookie-text strong{color:var(--ivoire);}
+  .cookie-text a{color:var(--or-clair); text-decoration:underline; text-underline-offset:2px;}
+  .cookie-actions{display:flex; gap:10px; flex-wrap:wrap;}
+  .cookie-btn{
+    padding:11px 22px; border-radius:999px; font-size:12px; letter-spacing:0.5px;
+    cursor:pointer; border:1px solid rgba(255,138,61,0.4); white-space:nowrap;
+    font-family:var(--sans); transition:transform .2s, opacity .2s;
+  }
+  .cookie-btn:hover{transform:translateY(-2px);}
+  .cookie-btn-accept{background:linear-gradient(90deg,var(--rubis),var(--ocre)); color:#170b24; border:none; font-weight:700;}
+  .cookie-btn-decline{background:transparent; color:var(--gris);}
+  @media (max-width:560px){
+    .cookie-banner{padding:18px;}
+    .cookie-actions{width:100%;}
+    .cookie-btn{flex:1;}
+  }
+  .wod-eyebrow{
+    font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--or);
+    display:block; margin-bottom:14px;
+  }
+  .word-of-day h3{
+    font-family:var(--serif); font-size:28px; font-weight:700; margin-bottom:12px;
+    color:var(--ivoire);
+  }
+  .word-of-day p{color:var(--gris); font-size:15px; font-weight:300; line-height:1.7;}
+
   @media (max-width:900px){
     .nav-links{display:none;}
     .news-grid{grid-template-columns:1fr;}
+    .young-grid{grid-template-columns:1fr 1fr;}
     .shop-grid{grid-template-columns:repeat(2,1fr);}
     .hero-meta{gap:24px;}
+    .hero{height:auto; min-height:auto; padding:110px 0 70px;}
+  }
+  @media (max-width:560px){
+    .young-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -179,61 +461,530 @@
   <div class="nav">
     <div class="logo">Vernissage<span>.</span></div>
     <nav class="nav-links">
-      <a href="#actualites">Actualités</a>
-      <a href="#boutique">Boutique</a>
-      <a href="#apropos">À propos</a>
+      <a href="#actualites" data-i18n="nav.news">News</a>
+      <a href="#analyse" data-i18n="nav.analysis">Analysis</a>
+      <a href="#calendrier" data-i18n="nav.calendar">Auction Calendar</a>
+      <a href="#expositions" data-i18n="nav.exhibitions">Exhibitions</a>
+      <a href="#jeunes-artistes" data-i18n="nav.emerging">Emerging Artists</a>
+      <a href="#originaux" data-i18n="nav.originals">Originals</a>
+      <a href="#architecture" data-i18n="nav.architecture">Architecture</a>
+      <a href="#boutique" data-i18n="nav.shop">Shop</a>
+      <a href="#newsletter" data-i18n="nav.newsletter">Newsletter</a>
+      <a href="#apropos" data-i18n="nav.about">About</a>
     </nav>
+    <button id="lang-switch" class="lang-switch" type="button">FR</button>
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-eyebrow">Édition du jour</div>
-  <h1>L'art ne se résume pas. <em>Il se vit.</em></h1>
-  <p>Vernissage rassemble en temps réel les actualités les plus fiables du monde de l'art — marché, expositions, ventes aux enchères — directement depuis les rédactions qui font autorité.</p>
-  <div class="hero-meta">
-    <div><strong id="meta-count">—</strong>Brèves en ligne</div>
-    <div><strong>5</strong>Sources vérifiées</div>
-    <div><strong id="meta-time">—</strong>Dernière mise à jour</div>
+<section class="hero" id="hero">
+  <div class="hero-bg-layer" id="layer-far"></div>
+  <div class="hero-bg-layer" id="layer-mid"></div>
+  <div class="hero-readability"></div>
+  <div class="hero-shapes" id="layer-shapes">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ribbonBase" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ff8fd0"/>
+          <stop offset="45%" stop-color="#ec2899"/>
+          <stop offset="100%" stop-color="#9c1066"/>
+        </linearGradient>
+        <linearGradient id="ribbonLoop" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ff6fc4"/>
+          <stop offset="100%" stop-color="#d61a85"/>
+        </linearGradient>
+        <radialGradient id="loopShine" cx="35%" cy="30%" r="65%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+          <stop offset="60%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Grand ruban 3D glossy, façon papier/silicone plié -->
+      <g class="shape-g" data-depth="0.55" data-rot="0">
+        <path fill="none" stroke="url(#ribbonBase)" stroke-width="260" stroke-linecap="round"
+          d="M -120 40 C 220 -30 430 190 360 380 C 300 540 470 640 660 580 C 830 525 900 360 1080 370"/>
+      </g>
+
+      <!-- Boucle du ruban, à droite -->
+      <g class="shape-g" data-depth="0.8" data-rot="0">
+        <circle cx="1010" cy="430" r="200" fill="url(#ribbonLoop)"/>
+        <circle cx="1010" cy="430" r="200" fill="url(#loopShine)"/>
+      </g>
+
+      <!-- Reflet glossy le long du ruban -->
+      <g class="shape-g" data-depth="0.55" data-rot="0">
+        <path fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="36" stroke-linecap="round"
+          d="M -110 -10 C 200 -70 390 130 330 320"/>
+      </g>
+
+      <!-- Petit badge tournant, façon sceau d'atelier -->
+      <g class="shape-g" data-depth="1.3" data-rot="0">
+        <circle cx="980" cy="500" r="58" fill="none" stroke="#e8ff3c" stroke-width="1.5" stroke-dasharray="2 4"/>
+        <circle cx="965" cy="500" r="5" fill="#e8ff3c"/>
+        <circle cx="982" cy="500" r="5" fill="#e8ff3c"/>
+        <circle cx="999" cy="500" r="5" fill="none" stroke="#e8ff3c" stroke-width="1.5"/>
+      </g>
+
+      <!-- Touches d'accent -->
+      <g class="shape-g" data-depth="1.4" data-rot="0">
+        <circle cx="1140" cy="180" r="8" fill="#ffffff" opacity="0.6"/>
+      </g>
+      <g class="shape-g" data-depth="1.6" data-rot="0">
+        <circle cx="120" cy="650" r="6" fill="#e8ff3c" opacity="0.7"/>
+      </g>
+    </svg>
   </div>
+  <div class="hero-content" id="layer-near">
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Today's Edition</div>
+    <h1 data-i18n="hero.title">Art can't be summed up. <em>It's lived.</em></h1>
+    <p data-i18n="hero.subtitle">Vernissage gathers the most reliable art world news in real time — market, exhibitions, auctions — straight from the newsrooms that set the standard.</p>
+  </div>
+  <div class="hero-scroll-cue" data-i18n="hero.scroll">Scroll ↓</div>
 </section>
 
 <section class="section" id="actualites">
   <div class="section-head">
-    <h2>Salle des ventes — actualités</h2>
-    <span class="lot-number">Flux en direct, sources citées</span>
+    <h2 data-i18n="news.h2">Auction Room — News</h2>
+    <span class="lot-number" data-i18n="news.tagline">Live feed, sources cited</span>
   </div>
-  <div id="news-status">Chargement des dernières actualités…</div>
+  <div id="news-status" data-i18n="news.loading">Loading the latest news…</div>
   <div class="news-grid" id="news-grid"></div>
+</section>
+
+<section class="section" id="calendrier">
+  <div class="section-head">
+    <h2 data-i18n="calendar.h2">Auction Calendar</h2>
+    <span class="lot-number jewel-garance" data-i18n="calendar.tagline">Upcoming sales, spotted in verified news</span>
+  </div>
+  <div id="sales-status" class="news-status" data-i18n="calendar.loading">Looking for upcoming sales…</div>
+  <div class="sales-list" id="sales-list"></div>
+</section>
+
+<section class="section" id="expositions">
+  <div class="section-head">
+    <h2 data-i18n="expo.h2">Must-See Exhibitions</h2>
+    <span class="lot-number jewel-sapphire-text" data-i18n="expo.tagline">Verified announcements, sources cited</span>
+  </div>
+  <div id="expo-status" class="news-status" data-i18n="expo.loading">Looking for current exhibitions…</div>
+  <div class="expo-grid" id="expo-grid"></div>
+</section>
+
+<section class="section" id="jeunes-artistes">
+  <div class="section-head">
+    <h2 data-i18n="young.h2">Emerging Artists — The Next Generation</h2>
+    <span class="lot-number jewel-emerald" data-i18n="young.tagline">Rising talents spotted</span>
+  </div>
+  <div id="young-status" class="news-status" data-i18n="young.loading">Looking for new talent…</div>
+  <div class="young-grid" id="young-grid"></div>
+</section>
+
+<section class="section" id="originaux">
+  <div class="section-head">
+    <h2 data-i18n="originals.h2">Vernissage Originals</h2>
+    <span class="lot-number jewel-emerald" data-i18n="originals.tagline">Written by the editorial team — refreshed daily</span>
+  </div>
+  <div id="originals-status" class="news-status"></div>
+  <div class="news-grid" id="originals-grid"></div>
+</section>
+
+<section class="section" id="architecture">
+  <div class="section-head">
+    <h2 data-i18n="arch.h2">Architecture</h2>
+    <span class="lot-number jewel-sapphire-text" data-i18n="arch.tagline">ArchDaily &amp; Dezeen, live</span>
+  </div>
+  <div id="arch-status" class="news-status" data-i18n="arch.loading">Loading projects…</div>
+  <div class="young-grid" id="arch-grid"></div>
 </section>
 
 <section class="section" id="boutique">
   <div class="section-head">
-    <h2>La galerie — boutique</h2>
-    <span class="lot-number">Impressions d'art • Redbubble</span>
+    <h2 data-i18n="shop.h2">The Gallery — Shop</h2>
+    <span class="lot-number" data-i18n="shop.tagline">Art prints • Redbubble</span>
   </div>
   <div class="shop-grid" id="shop-grid"></div>
 </section>
 
+<section class="section" id="analyse">
+  <div class="section-head" style="justify-content:center; align-items:center; text-align:center; flex-direction:column; gap:10px;">
+    <h2 data-i18n="editorial.h2">The Art Market in 2026: A Cautious Recovery</h2>
+    <span class="lot-number jewel-emerald" data-i18n="editorial.tagline">Analysis — by the Vernissage editorial team</span>
+  </div>
+  <article class="editorial editorial-centered" id="editorial-body" data-i18n="editorial.body">
+    <p class="lead">After three years of slowdown since the 2022 peak, the global art market is regaining some color. The annual Art Basel &amp; UBS report, published in March 2026, puts global sales at $59.6 billion in 2025, a 4% increase year-on-year — a modest but real recovery, set against an uneasy geopolitical backdrop.</p>
+    <p>Public auctions are driving most of that growth, up 9% to $20.7 billion, while the dealer market grew more timidly (+2%). In the United States, still by far the largest market with 44% of global sales, the number of works sold above $10 million jumped nearly 40% — a sign that the very top end of the market is coming back to the auction room, even as the mid-market remains more hesitant.</p>
+    <p>France, for its part, confirms its place as the European Union's top market: sales rose 9% to reach $4.5 billion, driven in particular by a strong rebound for Impressionist and Post-Impressionist works (+37%). Paris also saw a personal record for Claude Monet on French soil in April, with the sale of <em>Vétheuil, effet du matin</em> for €10.2 million at Sotheby's.</p>
+    <p>Not everything is rosy, though. The so-called "ultra-contemporary" segment — artists under 40, fuelled by post-Covid speculative euphoria — is deflating sharply: its auction revenue fell from $306 million in 2022 to just $48 million in 2025, according to Artprice. Painting still dominates this segment, but prices are struggling to stabilize, and many of yesterday's leading names have simply aged out of the category.</p>
+    <p>Another notable shift in the report: the share of women artists among dealers reached a record 45% in 2025, while the collector base is increasingly turning local as international sales face rising logistics and customs costs. A market that's becoming more fragmented — but also more diverse — heading into the coming seasons.</p>
+    <div class="editorial-sources">
+      <strong>Sources:</strong> Art Basel &amp; UBS, <em>Global Art Market Report 2026</em> (Arts Economics, Dr. Clare McAndrew) — Artprice by Artmarket, <em>The Art Market in 2025</em> — Le Journal des Arts, <em>Auction House News</em>, May-June 2026.
+    </div>
+  </article>
+</section>
+
 <div class="note">
-  <strong>Note d'édition —</strong> Les articles affichés sont importés directement des flux RSS officiels des médias cités, sans réécriture ni génération artificielle : ce que vous lisez ici est exactement ce qui a été publié par la source. La boutique redirige vers des places de marché externes pour la production et la livraison.
+  <strong data-i18n="note.strong">Editor's note —</strong> <span data-i18n="note.text">The news in the other sections is imported directly from the official RSS feeds of the outlets credited, with no rewriting or AI generation. The shop links out to external marketplaces for production and delivery.</span>
 </div>
+
+<section class="word-of-day" id="mot-du-jour">
+  <div class="word-of-day-inner">
+    <span class="wod-eyebrow" data-i18n="wod.eyebrow">Word of the Day</span>
+    <h3 id="wod-term">—</h3>
+    <p id="wod-def"></p>
+  </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-box">
+    <div id="newsletter-default">
+      <h3 data-i18n="newsletter.h3">Never miss a vernissage</h3>
+      <p data-i18n="newsletter.p">The essential art world news, once a week, straight to your inbox.</p>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/vernissagemag" method="post" target="newsletter-frame" class="newsletter-form" id="newsletter-form">
+        <input type="email" name="email" id="newsletter-email" data-i18n-placeholder="newsletter.placeholder" placeholder="you@email.com" required>
+        <button type="submit" data-i18n="newsletter.button">Subscribe</button>
+      </form>
+      <div class="newsletter-note" data-i18n="newsletter.note">Fully automated — unsubscribe with one click, anytime.</div>
+    </div>
+    <div id="newsletter-success" style="display:none;">
+      <h3 data-i18n="newsletter.successH3">You're subscribed 🎉</h3>
+      <p data-i18n="newsletter.successP">Check your inbox to confirm your address — you'll then receive the art world news every week.</p>
+    </div>
+    <iframe name="newsletter-frame" style="display:none;" title="newsletter"></iframe>
+  </div>
+</section>
+
+<script>
+  (function(){
+    const form = document.getElementById('newsletter-form');
+    const frame = document.querySelector('iframe[name="newsletter-frame"]');
+    let submitted = false;
+    let timeoutId;
+
+    form.addEventListener('submit', function(){
+      submitted = true;
+      // Si l'iframe ne répond pas dans les 6 secondes, on suppose un problème de configuration
+      timeoutId = setTimeout(()=>{
+        if(submitted){
+          alert("L'inscription n'a pas pu être confirmée. Le compte newsletter n'est peut-être pas encore configuré — réessaie plus tard ou contacte l'éditeur du site.");
+        }
+      }, 6000);
+    });
+
+    frame.addEventListener('load', function(){
+      if(!submitted) return; // ignore le chargement initial vide de l'iframe
+      clearTimeout(timeoutId);
+      document.getElementById('newsletter-default').style.display = 'none';
+      document.getElementById('newsletter-success').style.display = 'block';
+    });
+  })();
+</script>
 
 <footer>
   <div class="logo">Vernissage<span style="color:var(--or)">.</span></div>
-  © 2026 Vernissage — Le quotidien de l'art.
+  <span data-i18n="footer.text">© 2026 Vernissage — The daily of the art world.</span>
 </footer>
 
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-text" data-i18n="cookie.text">
+    <strong>Vernissage uses cookies.</strong> We only keep the essentials: a local cache to speed up news loading (15 min) and, if you subscribe, your newsletter opt-in via Buttondown. No ads, no data resale.
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-btn-decline" id="cookie-decline" data-i18n="cookie.decline">Decline</button>
+    <button class="cookie-btn cookie-btn-accept" id="cookie-accept" data-i18n="cookie.accept">Accept</button>
+  </div>
+</div>
+
 <script>
+/* ======================================================================
+   MOTEUR DE TRADUCTION — un seul fichier, deux langues.
+   Toute la coquille du site (nav, hero, titres, statuts, footer, cookies,
+   newsletter, article éditorial) est traduite instantanément en JS, sans
+   recharger la page. Seuls les articles tirés des flux RSS (déjà en
+   anglais à la source) restent en anglais quel que soit la langue choisie :
+   les traduire fiablement nécessiterait un service de traduction externe
+   payant, ce que ce site statique n'utilise pas.
+   ====================================================================== */
+const I18N = {
+  en: {
+    "nav.news":"News","nav.analysis":"Analysis","nav.calendar":"Auction Calendar",
+    "nav.exhibitions":"Exhibitions","nav.emerging":"Emerging Artists","nav.originals":"Originals",
+    "nav.architecture":"Architecture","nav.shop":"Shop","nav.newsletter":"Newsletter","nav.about":"About",
+    "hero.eyebrow":"Today's Edition",
+    "hero.title":"Art can't be summed up. <em>It's lived.</em>",
+    "hero.subtitle":"Vernissage gathers the most reliable art world news in real time — market, exhibitions, auctions — straight from the newsrooms that set the standard.",
+    "hero.scroll":"Scroll ↓",
+    "news.h2":"Auction Room — News","news.tagline":"Live feed, sources cited","news.loading":"Loading the latest news…",
+    "calendar.h2":"Auction Calendar","calendar.tagline":"Upcoming sales, spotted in verified news","calendar.loading":"Looking for upcoming sales…",
+    "expo.h2":"Must-See Exhibitions","expo.tagline":"Verified announcements, sources cited","expo.loading":"Looking for current exhibitions…",
+    "young.h2":"Emerging Artists — The Next Generation","young.tagline":"Rising talents spotted","young.loading":"Looking for new talent…",
+    "originals.h2":"Vernissage Originals","originals.tagline":"Written by the editorial team — refreshed daily",
+    "arch.h2":"Architecture","arch.tagline":"ArchDaily &amp; Dezeen, live","arch.loading":"Loading projects…",
+    "shop.h2":"The Gallery — Shop","shop.tagline":"Art prints • Redbubble","shop.viewBtn":"View on Redbubble",
+    "editorial.h2":"The Art Market in 2026: A Cautious Recovery","editorial.tagline":"Analysis — by the Vernissage editorial team",
+    "editorial.body":`
+      <p class="lead">After three years of slowdown since the 2022 peak, the global art market is regaining some color. The annual Art Basel &amp; UBS report, published in March 2026, puts global sales at $59.6 billion in 2025, a 4% increase year-on-year — a modest but real recovery, set against an uneasy geopolitical backdrop.</p>
+      <p>Public auctions are driving most of that growth, up 9% to $20.7 billion, while the dealer market grew more timidly (+2%). In the United States, still by far the largest market with 44% of global sales, the number of works sold above $10 million jumped nearly 40% — a sign that the very top end of the market is coming back to the auction room, even as the mid-market remains more hesitant.</p>
+      <p>France, for its part, confirms its place as the European Union's top market: sales rose 9% to reach $4.5 billion, driven in particular by a strong rebound for Impressionist and Post-Impressionist works (+37%). Paris also saw a personal record for Claude Monet on French soil in April, with the sale of <em>Vétheuil, effet du matin</em> for €10.2 million at Sotheby's.</p>
+      <p>Not everything is rosy, though. The so-called "ultra-contemporary" segment — artists under 40, fuelled by post-Covid speculative euphoria — is deflating sharply: its auction revenue fell from $306 million in 2022 to just $48 million in 2025, according to Artprice. Painting still dominates this segment, but prices are struggling to stabilize, and many of yesterday's leading names have simply aged out of the category.</p>
+      <p>Another notable shift in the report: the share of women artists among dealers reached a record 45% in 2025, while the collector base is increasingly turning local as international sales face rising logistics and customs costs. A market that's becoming more fragmented — but also more diverse — heading into the coming seasons.</p>
+      <div class="editorial-sources">
+        <strong>Sources:</strong> Art Basel &amp; UBS, <em>Global Art Market Report 2026</em> (Arts Economics, Dr. Clare McAndrew) — Artprice by Artmarket, <em>The Art Market in 2025</em> — Le Journal des Arts, <em>Auction House News</em>, May-June 2026.
+      </div>`,
+    "note.strong":"Editor's note —",
+    "note.text":"The news in the other sections is imported directly from the official RSS feeds of the outlets credited, with no rewriting or AI generation. The shop links out to external marketplaces for production and delivery.",
+    "wod.eyebrow":"Word of the Day",
+    "newsletter.h3":"Never miss a vernissage",
+    "newsletter.p":"The essential art world news, once a week, straight to your inbox.",
+    "newsletter.placeholder":"you@email.com","newsletter.button":"Subscribe",
+    "newsletter.note":"Fully automated — unsubscribe with one click, anytime.",
+    "newsletter.successH3":"You're subscribed 🎉",
+    "newsletter.successP":"Check your inbox to confirm your address — you'll then receive the art world news every week.",
+    "footer.text":"© 2026 Vernissage — The daily of the art world.",
+    "cookie.text":'<strong>Vernissage uses cookies.</strong> We only keep the essentials: a local cache to speed up news loading (15 min) and, if you subscribe, your newsletter opt-in via Buttondown. No ads, no data resale.',
+    "cookie.decline":"Decline","cookie.accept":"Accept",
+    "originals.status":"3 articles written by the editorial team, automatically refreshed every day.",
+    "originals.lot":"VERNISSAGE ORIGINAL",
+    "feeds.market":"Market & Sales","feeds.general":"Art In General","feeds.salesmuseums":"Sales & Museums",
+    "feeds.contemporary":"Contemporary Art","feeds.modern":"Modern Art","feeds.street":"Street Art","feeds.urban":"Urban Art",
+    "fallback.tag":"Editor's pick",
+    "card.lot":"LOT","card.details":"Details ↗",
+    "shop.from":"from $"
+  },
+  fr: {
+    "nav.news":"Actualités","nav.analysis":"Analyse","nav.calendar":"Calendrier des ventes",
+    "nav.exhibitions":"Expositions","nav.emerging":"Jeunes artistes","nav.originals":"Originaux",
+    "nav.architecture":"Architecture","nav.shop":"Boutique","nav.newsletter":"Newsletter","nav.about":"À propos",
+    "hero.eyebrow":"Édition du jour",
+    "hero.title":"L'art ne se résume pas. <em>Il se vit.</em>",
+    "hero.subtitle":"Vernissage rassemble en temps réel les actualités les plus fiables du monde de l'art — marché, expositions, ventes aux enchères — directement depuis les rédactions qui font autorité.",
+    "hero.scroll":"Faites défiler ↓",
+    "news.h2":"Salle des ventes — actualités","news.tagline":"Flux en direct, sources citées","news.loading":"Chargement des dernières actualités…",
+    "calendar.h2":"Calendrier des ventes","calendar.tagline":"Ventes à venir, repérées dans les actus vérifiées","calendar.loading":"Recherche des prochaines ventes…",
+    "expo.h2":"Expositions incontournables","expo.tagline":"Annonces vérifiées, sources citées","expo.loading":"Recherche des expositions en cours…",
+    "young.h2":"Jeunes artistes — la relève","young.tagline":"Talents émergents repérés","young.loading":"Recherche de nouveaux talents…",
+    "originals.h2":"Originaux Vernissage","originals.tagline":"Écrit par la rédaction — renouvelé chaque jour",
+    "arch.h2":"Architecture","arch.tagline":"ArchDaily &amp; Dezeen, en direct","arch.loading":"Chargement des projets…",
+    "shop.h2":"La galerie — boutique","shop.tagline":"Impressions d'art • Redbubble","shop.viewBtn":"Voir sur Redbubble",
+    "editorial.h2":"Le marché de l'art en 2026 : une reprise prudente","editorial.tagline":"Analyse — par la rédaction de Vernissage",
+    "editorial.body":`
+      <p class="lead">Après trois années de tassement depuis le pic de 2022, le marché mondial de l'art retrouve des couleurs. Le rapport annuel Art Basel &amp; UBS, publié en mars 2026, chiffre les ventes globales à 59,6 milliards de dollars en 2025, soit une progression de 4 % sur un an — une reprise modérée, mais réelle, dans un contexte géopolitique pourtant tendu.</p>
+      <p>Les enchères publiques tirent l'essentiel de cette croissance, avec un bond de 9 % à 20,7 milliards de dollars, tandis que le marché des galeries progresse plus timidement (+2 %). Aux États-Unis, qui restent largement en tête avec 44 % des ventes mondiales, le nombre d'œuvres adjugées au-delà de 10 millions de dollars a grimpé de près de 40 % — signe que les très grandes fortunes reviennent en salle des ventes, même si le marché du milieu de gamme reste plus hésitant.</p>
+      <p>La France, elle, confirme sa place de premier marché de l'Union européenne : ses ventes ont progressé de 9 % pour atteindre 4,5 milliards de dollars, portées notamment par un net regain pour l'impressionnisme et le post-impressionnisme (+37 %). Paris a d'ailleurs accueilli en avril un record personnel pour Claude Monet sur le sol français, avec l'adjudication de <em>Vétheuil, effet du matin</em> pour 10,2 millions d'euros chez Sotheby's.</p>
+      <p>Tout n'est pas rose pour autant. Le segment dit "ultra-contemporain" — les artistes de moins de 40 ans, portés par l'euphorie spéculative de l'après-Covid — connaît un net dégonflement : son chiffre d'affaires aux enchères est passé de 306 millions de dollars en 2022 à seulement 48 millions en 2025, selon Artprice. La peinture y reste dominante, mais les prix peinent à se stabiliser et les figures de proue d'hier ont, pour beaucoup, quitté la catégorie en vieillissant.</p>
+      <p>Autre évolution notable du rapport : la part des femmes artistes chez les marchands atteint 45 % en 2025, un record historique, tandis que la base de collectionneurs se recentre sur les marchés locaux face à la hausse des coûts logistiques et douaniers liés aux ventes internationales. De quoi nourrir un marché plus fragmenté, mais aussi plus diversifié, pour les saisons à venir.</p>
+      <div class="editorial-sources">
+        <strong>Sources :</strong> Art Basel &amp; UBS, <em>Global Art Market Report 2026</em> (Arts Economics, Dr. Clare McAndrew) — Artprice by Artmarket, <em>Le Marché de l'Art en 2025</em> — Le Journal des Arts, <em>L'actualité des maisons de ventes</em>, mai-juin 2026.
+      </div>`,
+    "note.strong":"Note d'édition —",
+    "note.text":"Les actualités des autres rubriques sont importées directement des flux RSS officiels des médias cités, sans réécriture ni génération artificielle. La boutique redirige vers des places de marché externes pour la production et la livraison.",
+    "wod.eyebrow":"Le mot du jour",
+    "newsletter.h3":"Ne manquez plus aucun vernissage",
+    "newsletter.p":"L'essentiel de l'actualité de l'art, une fois par semaine, directement dans votre boîte mail.",
+    "newsletter.placeholder":"votre@email.com","newsletter.button":"S'inscrire",
+    "newsletter.note":"Gestion 100% automatique — désinscription possible en un clic à tout moment.",
+    "newsletter.successH3":"Inscription confirmée 🎉",
+    "newsletter.successP":"Vérifiez votre boîte mail pour confirmer votre adresse — vous recevrez ensuite l'actualité de l'art chaque semaine.",
+    "footer.text":"© 2026 Vernissage — Le quotidien de l'art.",
+    "cookie.text":"<strong>Vernissage utilise des cookies.</strong> On garde juste l'essentiel : une mémoire locale pour accélérer le chargement des actualités (15 min) et, si vous vous inscrivez, votre choix d'abonnement à la newsletter via Buttondown. Pas de pub, pas de revente de données.",
+    "cookie.decline":"Refuser","cookie.accept":"Accepter",
+    "originals.status":"3 articles écrits par la rédaction, sélection renouvelée automatiquement chaque jour.",
+    "originals.lot":"ORIGINAL VERNISSAGE",
+    "feeds.market":"Marché & ventes","feeds.general":"Art en général","feeds.salesmuseums":"Ventes & musées",
+    "feeds.contemporary":"Art contemporain","feeds.modern":"Art moderne","feeds.street":"Street art","feeds.urban":"Art urbain",
+    "fallback.tag":"Sélection rédaction",
+    "card.lot":"LOT","card.details":"Détails ↗",
+    "shop.from":"à partir de "
+  }
+};
+
+let CURRENT_LANG = localStorage.getItem('vernissage-lang') || 'en';
+
+function t(key){
+  return (I18N[CURRENT_LANG] && I18N[CURRENT_LANG][key]) || (I18N.en[key] || key);
+}
+
+function applyStaticTranslations(){
+  document.documentElement.lang = CURRENT_LANG;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    el.innerHTML = t(el.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));
+  });
+  document.getElementById('lang-switch').textContent = CURRENT_LANG === 'en' ? 'FR' : 'EN';
+}
+
+function setLang(lang){
+  CURRENT_LANG = lang;
+  try{ localStorage.setItem('vernissage-lang', lang); }catch(e){}
+  applyStaticTranslations();
+  // Re-render the dynamic sections that depend on language, using already-fetched data
+  showWordOfDay();
+  showOriginals();
+  renderShop();
+  if(window.__lastNewsItems){ renderNews(window.__lastNewsItems, window.__lastOkCount); renderExpos(window.__lastNewsItems); renderSalesCalendar(window.__lastNewsItems); }
+  if(window.__lastYoungItems){ renderYoung(window.__lastYoungItems); }
+  if(window.__lastArchItems){ renderArch(window.__lastArchItems); }
+}
+
+document.addEventListener('DOMContentLoaded', applyStaticTranslations);
+applyStaticTranslations();
+document.getElementById('lang-switch').addEventListener('click', ()=>{
+  setLang(CURRENT_LANG === 'en' ? 'fr' : 'en');
+});
+</script>
+
+<script>
+(function(){
+  const banner = document.getElementById('cookie-banner');
+  const KEY = 'vernissage-cookie-consent';
+  const choice = localStorage.getItem(KEY);
+  if(!choice){
+    setTimeout(()=> banner.classList.add('visible'), 600);
+  }
+  function setChoice(value){
+    try{ localStorage.setItem(KEY, value); }catch(e){}
+    banner.classList.remove('visible');
+    // If declined, clear the feed cache (the site still works, just without local memory)
+    if(value === 'declined'){
+      try{
+        ['vernissage-news','vernissage-young','vernissage-arch'].forEach(k=>localStorage.removeItem(k));
+      }catch(e){}
+    }
+  }
+  document.getElementById('cookie-accept').addEventListener('click', ()=> setChoice('accepted'));
+  document.getElementById('cookie-decline').addEventListener('click', ()=> setChoice('declined'));
+})();
+</script>
+
+<script>
+/* ---------- CACHE : évite de re-télécharger les flux à chaque visite (15 min) ---------- */
+const CACHE_TTL = 15 * 60 * 1000;
+function getCache(key){
+  try{
+    const raw = localStorage.getItem(key);
+    if(!raw) return null;
+    const { data, time } = JSON.parse(raw);
+    if(Date.now() - time > CACHE_TTL) return null;
+    return data;
+  }catch(e){ return null; }
+}
+function setCache(key, data){
+  try{ localStorage.setItem(key, JSON.stringify({ data, time: Date.now() })); }catch(e){}
+}
+function fetchWithTimeout(url, ms = 5000){
+  return Promise.race([
+    fetch(url),
+    new Promise((_, reject) => setTimeout(()=> reject(new Error('timeout')), ms))
+  ]);
+}
+
+/* ---------- IMAGES : redimensionnement + compression à la volée ----------
+   Les images des flux RSS sont souvent énormes (plusieurs Mo, taille originale
+   de l'article). On les fait passer par un proxy d'images gratuit (images.weserv.nl)
+   qui les redimensionne et les compresse en WebP avant de les servir : le poids
+   transféré chute drastiquement et l'affichage est quasi instantané. */
+function thumb(url, width){
+  if(!url) return url;
+  if(url.startsWith('data:')) return url; // image locale déjà légère : pas de proxy
+  const clean = url.replace(/^https?:\/\//,'');
+  return `https://images.weserv.nl/?url=${encodeURIComponent(clean)}&w=${width}&output=webp&q=72&fit=cover`;
+}
+/* Image affichée tout de suite (pas de lazy, pas de fondu qui retarde l'affichage) :
+   on tente la version compressée/redimensionnée, et en cas d'échec du proxy
+   on retombe automatiquement et immédiatement sur l'image originale. */
+function imgTag(url, width, alt){
+  const safeAlt = (alt||'').replace(/"/g,'&quot;');
+  const safeUrl = (url||'').replace(/"/g,'&quot;');
+  return `<img src="${thumb(url, width)}" alt="${safeAlt}" decoding="async" onerror="if(this.src!=='${safeUrl}'){this.src='${safeUrl}';}else{this.closest('.news-img,.expo-img,.young-img,.piece-img')?.classList.add('img-fallback');}">`;
+}
+
+(function(){
+  const far = document.getElementById('layer-far');
+  const mid = document.getElementById('layer-mid');
+  const near = document.getElementById('layer-near');
+  const hero = document.getElementById('hero');
+  const shapeEls = Array.from(document.querySelectorAll('.shape-g'));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion) return;
+
+  let scrollY = 0, targetX = 0, targetY = 0, mouseX = 0, mouseY = 0, ticking = false;
+
+  function loop(){
+    // Lissage (lerp) du curseur : évite les sauts brusques, rend le mouvement soyeux
+    mouseX += (targetX - mouseX) * 0.08;
+    mouseY += (targetY - mouseY) * 0.08;
+
+    const heroHeight = hero.offsetHeight || 1;
+    const scrollT = Math.min(Math.max(scrollY / heroHeight, 0), 1);
+
+    far.style.transform  = `translate3d(${mouseX*14}px, ${mouseY*10 + scrollY*0.15}px, 0)`;
+    mid.style.transform  = `translate3d(${mouseX*30}px, ${mouseY*22 + scrollY*0.35}px, 0)`;
+
+    // Chaque forme a sa propre profondeur : plus elle est "proche", plus elle bouge et tourne
+    shapeEls.forEach(el=>{
+      const depth = parseFloat(el.dataset.depth) || 1;
+      const baseRot = parseFloat(el.dataset.rot) || 0;
+      const tx = mouseX * 60 * depth;
+      const ty = mouseY * 46 * depth + scrollY * 0.18 * depth;
+      const rot = baseRot + mouseX * 12 * depth;
+      el.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg)`;
+    });
+
+    // Légère bascule 3D du texte, façon carte qui suit le regard
+    near.style.transform = `
+      rotateY(${mouseX * 4}deg)
+      rotateX(${-mouseY * 4}deg)
+      translate3d(${mouseX*8}px, ${mouseY*6 + scrollY*0.55}px, 0)
+    `;
+    near.style.opacity = Math.max(0, 1 - scrollT * 1.1);
+
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  function setTarget(clientX, clientY){
+    const rect = hero.getBoundingClientRect();
+    targetX = (clientX - rect.left) / rect.width - 0.5;   // -0.5 → 0.5
+    targetY = (clientY - rect.top) / rect.height - 0.5;
+  }
+
+  window.addEventListener('scroll', ()=>{
+    scrollY = window.scrollY;
+  }, { passive:true });
+
+  hero.addEventListener('mousemove', (e)=> setTarget(e.clientX, e.clientY));
+  hero.addEventListener('mouseleave', ()=>{ targetX = 0; targetY = 0; });
+
+  // Sur mobile : on fait réagir le décor au scroll et à l'inclinaison du téléphone, pas qu'à la souris
+  hero.addEventListener('touchmove', (e)=>{
+    if(e.touches && e.touches[0]) setTarget(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive:true });
+  window.addEventListener('deviceorientation', (e)=>{
+    if(e.gamma == null || e.beta == null) return;
+    targetX = Math.max(-0.5, Math.min(0.5, e.gamma / 45));
+    targetY = Math.max(-0.5, Math.min(0.5, (e.beta - 45) / 45));
+  });
+})();
+
 /* ---------- ACTUALITÉS : flux RSS réels via rss2json (gratuit) ---------- */
 const FEEDS = [
-  { name: "Artnet News", url: "https://news.artnet.com/feed", tag:"Marché & ventes" },
-  { name: "Hyperallergic", url: "https://hyperallergic.com/feed/", tag:"Art en général" },
-  { name: "The Art Newspaper", url: "https://www.theartnewspaper.com/rss/news", tag:"Ventes & musées" },
-  { name: "Artforum", url: "https://www.artforum.com/feed/news/", tag:"Art contemporain" },
-  { name: "ArtReview", url: "https://artreview.com/feed/", tag:"Art moderne" },
-  { name: "Juxtapoz", url: "https://www.juxtapoz.com/feed/", tag:"Street art" },
-  { name: "Street Art News", url: "https://streetartnews.net/feed", tag:"Street art" },
-  { name: "Widewalls", url: "https://www.widewalls.ch/feed", tag:"Art urbain" }
+  { name: "Artnet News", url: "https://news.artnet.com/feed", tagKey:"feeds.market" },
+  { name: "Hyperallergic", url: "https://hyperallergic.com/feed/", tagKey:"feeds.general" },
+  { name: "The Art Newspaper", url: "https://www.theartnewspaper.com/rss/news", tagKey:"feeds.salesmuseums" },
+  { name: "Artforum", url: "https://www.artforum.com/feed/news/", tagKey:"feeds.contemporary" },
+  { name: "ArtReview", url: "https://artreview.com/feed/", tagKey:"feeds.modern" },
+  { name: "Juxtapoz", url: "https://www.juxtapoz.com/feed/", tagKey:"feeds.street" },
+  { name: "Street Art News", url: "https://streetartnews.net/feed", tagKey:"feeds.street" },
+  { name: "Widewalls", url: "https://www.widewalls.ch/feed", tagKey:"feeds.urban" }
+];
+
+const YOUNG_ARTIST_FEEDS = [
+  { name: "It's Nice That", url: "https://www.itsnicethat.com/rss" },
+  { name: "Colossal", url: "https://www.thisiscolossal.com/feed/" }
+];
+
+const ARCHITECTURE_FEEDS = [
+  { name: "ArchDaily", url: "https://www.archdaily.com/feed" },
+  { name: "Dezeen", url: "https://www.dezeen.com/architecture/feed/" }
 ];
 /* Note : Christie's et Sotheby's ne publient pas de flux RSS public officiel.
    Leurs ventes record sont en revanche systématiquement couvertes par Artnet,
@@ -242,12 +993,19 @@ const FEEDS = [
 async function loadNews(){
   const grid = document.getElementById('news-grid');
   const status = document.getElementById('news-status');
+
+  const cached = getCache('vernissage-news');
+  if(cached){
+    window.__lastNewsItems = cached; window.__lastOkCount = undefined;
+    renderNews(cached); renderExpos(cached); renderSalesCalendar(cached); return;
+  }
+
   let allItems = [];
   let okCount = 0;
 
   await Promise.all(FEEDS.map(async feed => {
     try{
-      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed.url));
+      const res = await fetchWithTimeout('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed.url));
       const data = await res.json();
       if(data.status === 'ok' && data.items && data.items.length){
         okCount++;
@@ -263,7 +1021,7 @@ async function loadNews(){
             desc: (item.description||'').replace(/<[^>]*>/g,'').slice(0,140) + '…',
             link: item.link,
             source: feed.name,
-            tag: feed.tag,
+            tagKey: feed.tagKey,
             img: img,
             date: item.pubDate
           });
@@ -272,25 +1030,126 @@ async function loadNews(){
     }catch(e){ /* source indisponible, on ignore silencieusement */ }
   }));
 
+  // On ne garde que les articles qui ont une vraie image, pour ne jamais afficher de case vide
+  allItems = allItems.filter(item => !!item.img);
   allItems.sort((a,b)=> new Date(b.date) - new Date(a.date));
 
   if(allItems.length === 0){
-    status.textContent = "Les flux sont temporairement indisponibles. Réessayez dans un instant.";
+    status.textContent = t('news.feedsDown') || "Feeds are temporarily unavailable. Please try again shortly.";
     return;
   }
 
-  status.textContent = `${allItems.length} brèves récupérées depuis ${okCount} sources — mise à jour automatique à chaque visite.`;
-  document.getElementById('meta-count').textContent = allItems.length;
-  document.getElementById('meta-time').textContent = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  setCache('vernissage-news', allItems);
+  window.__lastNewsItems = allItems; window.__lastOkCount = okCount;
+  renderNews(allItems, okCount);
+  renderExpos(allItems);
+  renderSalesCalendar(allItems);
+}
 
-  grid.innerHTML = allItems.slice(0,15).map((item, i)=>`
+/* Articles "maison" : rédigés et sourcés par Vernissage, jamais inventés -
+   ils servent uniquement à compléter la grille quand le nombre d'articles
+   RSS récupérés n'est pas un multiple de 3, pour ne jamais laisser de case vide. */
+const FALLBACK_NEWS = [
+  {
+    title: {en:"Banksy's stencil, a street grammar turned heritage", fr:"Le pochoir de Banksy, une grammaire de rue devenue patrimoine"},
+    desc: {en:"First appearing on the streets of Bristol in the late 1990s, Banksy's stencil work has become the most recognized visual language in street art — eventually reaching the auction room.",
+           fr:"Apparu dans les rues de Bristol à la fin des années 1990, le pochoir signé Banksy s'est imposé comme le langage visuel le plus reconnu du street art, jusqu'à atteindre les salles de ventes."},
+    link: {en:"https://en.wikipedia.org/wiki/Banksy", fr:"https://fr.wikipedia.org/wiki/Banksy"},
+    source: "Vernissage",
+    img: 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+        <rect width="600" height="400" fill="#241433"/>
+        <rect x="0" y="0" width="600" height="400" fill="#170b24" opacity="0.4"/>
+        <g fill="#ffffff">
+          <path d="M260 320 L260 230 C260 230 230 210 230 180 C230 160 250 150 260 165 C265 145 295 145 300 165 C310 150 330 160 330 180 C330 210 300 230 300 230 L300 320 Z"/>
+          <rect x="250" y="320" width="60" height="14"/>
+        </g>
+        <g fill="#ff4d6d">
+          <circle cx="380" cy="120" r="10"/>
+          <circle cx="400" cy="140" r="8"/>
+          <circle cx="415" cy="105" r="7"/>
+        </g>
+        <g fill="#ffb238">
+          <circle cx="395" cy="100" r="9"/>
+          <circle cx="425" cy="130" r="6"/>
+        </g>
+      </svg>`),
+    date: new Date().toISOString()
+  },
+  {
+    title: {en:"JR, the photographer who pastes faces onto the world's walls", fr:"JR, le photographe qui colle des visages sur les murs du monde"},
+    desc: {en:"With his monumental portraits pasted directly onto facades, French artist JR has spent twenty years transforming entire neighborhoods, from Rio de Janeiro to the Louvre pyramid.",
+           fr:"Avec ses portraits monumentaux contrecollés à même les façades, l'artiste français JR transforme depuis vingt ans des quartiers entiers, de Rio de Janeiro à la pyramide du Louvre."},
+    link: {en:"https://en.wikipedia.org/wiki/JR_(artist)", fr:"https://fr.wikipedia.org/wiki/JR_(artiste)"},
+    source: "Vernissage",
+    img: 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+        <rect width="600" height="400" fill="#241433"/>
+        <rect x="0" y="0" width="600" height="400" fill="#170b24" opacity="0.4"/>
+        <circle cx="300" cy="180" r="95" fill="none" stroke="#4d9bff" stroke-width="5" opacity="0.8"/>
+        <circle cx="300" cy="150" r="40" fill="#ffffff" opacity="0.92"/>
+        <path d="M220 320 C220 250 260 215 300 215 C340 215 380 250 380 320 Z" fill="#ffffff" opacity="0.92"/>
+        <rect x="120" y="60" width="18" height="18" fill="#9b5cff"/>
+        <rect x="460" y="300" width="18" height="18" fill="#1fd3a2"/>
+      </svg>`),
+    date: new Date().toISOString()
+  },
+  {
+    title: {en:"Keith Haring, from the New York subway to museums worldwide", fr:"Keith Haring, du métro de New York aux musées du monde"},
+    desc: {en:"Starting in 1980, Keith Haring chalked his dancing figures onto empty advertising panels in the New York subway, before his pop vocabulary conquered galleries and institutions.",
+           fr:"À partir de 1980, Keith Haring dessine à la craie ses figures dansantes sur les panneaux publicitaires vides du métro new-yorkais, avant que son vocabulaire pop ne conquière galeries et institutions."},
+    link: {en:"https://en.wikipedia.org/wiki/Keith_Haring", fr:"https://fr.wikipedia.org/wiki/Keith_Haring"},
+    source: "Vernissage",
+    img: 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+        <rect width="600" height="400" fill="#241433"/>
+        <rect x="0" y="0" width="600" height="400" fill="#170b24" opacity="0.4"/>
+        <g fill="#ffc14d">
+          <circle cx="240" cy="120" r="28"/>
+          <path d="M240 148 L240 250 M240 180 L190 150 M240 180 L290 150 M240 250 L200 320 M240 250 L280 320" stroke="#ffc14d" stroke-width="16" stroke-linecap="round" fill="none"/>
+        </g>
+        <g fill="#ff5d8f">
+          <circle cx="400" cy="220" r="22"/>
+          <path d="M400 242 L400 320 M400 265 L360 250 M400 265 L440 250" stroke="#ff5d8f" stroke-width="14" stroke-linecap="round" fill="none"/>
+        </g>
+      </svg>`),
+    date: new Date().toISOString()
+  }
+];
+function padToGrid(items, columns){
+  const remainder = items.length % columns;
+  if(remainder === 0 || items.length === 0) return items;
+  const needed = columns - remainder;
+  const usedLinks = new Set(items.map(i=>i.link));
+  const extras = FALLBACK_NEWS
+    .filter(f=>!usedLinks.has(f.link[CURRENT_LANG]||f.link.en))
+    .slice(0, needed)
+    .map(f=>({
+      title: f.title[CURRENT_LANG] || f.title.en,
+      desc: f.desc[CURRENT_LANG] || f.desc.en,
+      link: f.link[CURRENT_LANG] || f.link.en,
+      source: f.source,
+      tag: t('fallback.tag'),
+      img: f.img,
+      date: f.date
+    }));
+  return items.concat(extras);
+}
+
+function renderNews(allItems, okCount){
+
+  const grid = document.getElementById('news-grid');
+  const status = document.getElementById('news-status');
+
+  status.textContent = okCount
+    ? `${allItems.length} ${CURRENT_LANG==='fr' ? 'brèves récupérées depuis' : 'stories retrieved from'} ${okCount} ${CURRENT_LANG==='fr' ? 'sources — mise à jour automatique à chaque visite.' : 'sources — automatically updated on each visit.'}`
+    : `${allItems.length} ${CURRENT_LANG==='fr' ? 'brèves (depuis le cache local, rafraîchies toutes les 15 minutes).' : 'stories (from local cache, refreshed every 15 minutes).'}`;
+
+  grid.innerHTML = padToGrid(allItems.slice(0,15), 3).map((item, i)=>`
     <a class="news-card" href="${item.link}" target="_blank" rel="noopener">
-      ${item.img
-        ? `<div class="news-img" style="background-image:url('${item.img}')"></div>`
-        : `<div class="news-img news-img-empty">${item.tag}</div>`
-      }
+      <div class="news-img">${imgTag(item.img, 640, item.title)}</div>
       <div class="news-card-body">
-        <div class="lot">${item.tag.toUpperCase()} — LOT ${String(i+1).padStart(2,'0')}</div>
+        <div class="lot">${(item.tag || t(item.tagKey)).toUpperCase()} — ${t('card.lot')} ${String(i+1).padStart(2,'0')}</div>
         <h3>${item.title}</h3>
         <p>${item.desc}</p>
         <div class="src"><span>${item.source}</span><span>↗</span></div>
@@ -298,27 +1157,398 @@ async function loadNews(){
     </a>
   `).join('');
 }
+
+/* Rubrique Expositions : on ne réécrit jamais l'info, on filtre les vrais articles
+   des sources ci-dessus qui parlent explicitement d'une exposition/ouverture en cours.
+   Aucune exposition n'est inventée — seules les annonces déjà publiées par les médias
+   cités apparaissent ici, avec leur lien d'origine. */
+const EXPO_KEYWORDS = [
+  'exhibition','exhibit','retrospective','on view','opens at','opening at',
+  'show at','showing at','museum','gallery show','biennale','triennale'
+];
+function renderExpos(allItems){
+  const grid = document.getElementById('expo-grid');
+  const status = document.getElementById('expo-status');
+
+  const expos = allItems.filter(item=>{
+    const text = (item.title + ' ' + item.desc).toLowerCase();
+    return EXPO_KEYWORDS.some(k => text.includes(k));
+  });
+
+  if(expos.length === 0){
+    status.textContent = CURRENT_LANG==='fr' ? "Aucune annonce d'exposition vérifiée dans les flux pour l'instant." : "No verified exhibition announcements in the feeds right now.";
+    grid.innerHTML = '';
+    return;
+  }
+
+  status.textContent = CURRENT_LANG==='fr'
+    ? `${expos.length} expositions repérées dans les articles vérifiés ci-dessus.`
+    : `${expos.length} exhibitions spotted in the verified articles above.`;
+  grid.innerHTML = padToGrid(expos.slice(0,6), 3).map(item=>`
+    <a class="expo-card" href="${item.link}" target="_blank" rel="noopener">
+      <div class="expo-img">${imgTag(item.img, 560, item.title)}</div>
+      <div class="expo-body">
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+        <div class="src"><span>${item.source}</span><span>↗</span></div>
+      </div>
+    </a>
+  `).join('');
+}
+
+/* Calendrier des ventes : on ne fabrique aucune date — on repère les articles
+   des sources vérifiées qui annoncent une vente à venir (verbes au futur,
+   "to be auctioned", "will go under the hammer", etc.) et on les liste ici,
+   triés par date de publication. Le lien d'origine donne la date exacte. */
+const SALE_KEYWORDS = [
+  'to be auctioned','will be auctioned','goes under the hammer','will go under the hammer',
+  'upcoming sale','heads to auction','to go on sale','will be sold at auction',
+  'estimated at','pre-sale estimate','auction house','sale will take place','sets sale for'
+];
+function renderSalesCalendar(allItems){
+  const list = document.getElementById('sales-list');
+  const status = document.getElementById('sales-status');
+
+  const sales = allItems.filter(item=>{
+    const text = (item.title + ' ' + item.desc).toLowerCase();
+    return SALE_KEYWORDS.some(k => text.includes(k));
+  });
+
+  if(sales.length === 0){
+    status.textContent = CURRENT_LANG==='fr' ? "Aucune annonce de vente à venir détectée dans les flux pour l'instant." : "No upcoming sale announcements detected in the feeds right now.";
+    list.innerHTML = '';
+    return;
+  }
+
+  status.textContent = CURRENT_LANG==='fr'
+    ? `${sales.length} ventes annoncées, repérées dans les articles vérifiés — date exacte sur l'article source.`
+    : `${sales.length} sales announced, spotted in verified articles — exact date on the source article.`;
+  list.innerHTML = sales.slice(0,8).map(item=>`
+    <a class="sale-row" href="${item.link}" target="_blank" rel="noopener">
+      <div class="sale-date">${new Date(item.date).toLocaleDateString(CURRENT_LANG==='fr' ? 'fr-FR' : 'en-US',{day:'2-digit', month:'short'})}</div>
+      <div class="sale-info">
+        <h3>${item.title}</h3>
+        <p>${item.source}</p>
+      </div>
+      <div class="sale-link">${t('card.details')}</div>
+    </a>
+  `).join('');
+}
+
+/* ---------- MOT DU JOUR : lexique fixe, qui tourne automatiquement chaque jour ---------- */
+const ART_TERMS = [
+  { term:{en:"Flat color", fr:"Aplat"}, def:{en:"A uniform area of color, with no shading or gradient, applied in a single gesture.", fr:"Une zone de couleur uniforme, sans nuance ni dégradé, posée d'un seul geste."} },
+  { term:{en:"Impasto", fr:"Empâtement"}, def:{en:"A thick, raised layer of paint that preserves the visible trace of the painter's hand.", fr:"Épaisse couche de peinture posée en relief, qui garde la trace du geste du peintre."} },
+  { term:{en:"Sfumato", fr:"Sfumato"}, def:{en:"A technique of gradual blending between tones, popularized by Leonardo da Vinci.", fr:"Technique de fondu progressif entre les tons, popularisée par Léonard de Vinci."} },
+  { term:{en:"Print", fr:"Estampe"}, def:{en:"An image produced from a matrix (wood, metal, stone), allowing several identical impressions.", fr:"Image imprimée à partir d'une matrice (bois, métal, pierre), permettant plusieurs tirages identiques."} },
+  { term:{en:"Provenance", fr:"Provenance"}, def:{en:"The complete history of a work's successive owners, key to establishing its authenticity.", fr:"L'historique complet des propriétaires successifs d'une œuvre, déterminant pour son authentification."} },
+  { term:{en:"Pentimento", fr:"Pentimento"}, def:{en:"A visible trace of an earlier change by the painter, a hidden second thought beneath the final layers.", fr:"Trace visible d'une modification antérieure du peintre, repentir caché sous les couches finales."} },
+  { term:{en:"Hapax", fr:"Hapax"}, def:{en:"A unique work by an artist, with no equivalent or series anywhere else in their known output.", fr:"Œuvre unique d'un artiste, sans équivalent ni série dans tout son travail connu."} },
+  { term:{en:"Patina", fr:"Patine"}, def:{en:"The natural alteration of a work's surface over time, sometimes prized for its aesthetic.", fr:"Altération naturelle de la surface d'une œuvre avec le temps, parfois recherchée pour son esthétique."} },
+  { term:{en:"Stretcher", fr:"Châssis"}, def:{en:"The wooden frame onto which a canvas is stretched before being painted.", fr:"Cadre de bois sur lequel une toile est tendue avant d'être peinte."} },
+  { term:{en:"Repentir", fr:"Repentir"}, def:{en:"A visible or concealed change of intention an artist makes during the creative process.", fr:"Changement d'intention visible ou dissimulé qu'un artiste apporte en cours de création."} },
+  { term:{en:"Grisaille", fr:"Grisaille"}, def:{en:"A painting executed entirely in shades of grey, often as a preparatory study.", fr:"Peinture exécutée entièrement en camaïeu de gris, souvent en étude préparatoire."} },
+  { term:{en:"Académie", fr:"Académie"}, def:{en:"A drawn or painted study of a nude model, a classic exercise in artistic training.", fr:"Étude dessinée ou peinte d'un modèle nu, exercice classique de formation artistique."} },
+  { term:{en:"Plein air", fr:"Plein air"}, def:{en:"The practice of painting directly outdoors, facing the subject, rather than in a studio.", fr:"Pratique de peindre directement en extérieur, face au sujet, plutôt qu'en atelier."} },
+  { term:{en:"Trompe-l'œil", fr:"Trompe-l'œil"}, def:{en:"A pictorial technique creating an illusion of depth or relief so realistic it deceives the eye.", fr:"Procédé pictural créant une illusion de relief ou de profondeur si réaliste qu'elle trompe l'œil."} },
+  { term:{en:"Readymade", fr:"Readymade"}, def:{en:"A manufactured object moved into an artistic context without alteration, as theorized by Duchamp.", fr:"Objet manufacturé déplacé dans un contexte artistique, sans transformation, comme l'a théorisé Duchamp."} },
+  { term:{en:"Tondo", fr:"Tondo"}, def:{en:"A circular-format work, widely used during the Italian Renaissance.", fr:"Œuvre de format circulaire, très utilisée à la Renaissance italienne."} },
+  { term:{en:"Sketch", fr:"Esquisse"}, def:{en:"A quick, often spontaneous study that precedes the final execution of a work.", fr:"Étude rapide, souvent spontanée, qui précède la réalisation finale d'une œuvre."} },
+  { term:{en:"Polyptych", fr:"Polyptyque"}, def:{en:"A work made up of several hinged panels, often religious, like a winged altarpiece.", fr:"Œuvre composée de plusieurs panneaux articulés, souvent religieux, comme un retable à volets."} },
+  { term:{en:"Monochrome", fr:"Camaïeu"}, def:{en:"A painting executed in different shades of a single color.", fr:"Peinture réalisée dans les différentes nuances d'une seule couleur."} },
+  { term:{en:"Vanitas", fr:"Vanité"}, def:{en:"A still-life genre recalling the fragility of life, often through a skull or a candle.", fr:"Genre de nature morte rappelant la fragilité de la vie, souvent par un crâne ou une bougie."} }
+];
+function showWordOfDay(){
+  const dayIndex = Math.floor(Date.now() / 86400000); // change automatiquement chaque jour, sans aucune action
+  const today = ART_TERMS[dayIndex % ART_TERMS.length];
+  document.getElementById('wod-term').textContent = today.term[CURRENT_LANG] || today.term.en;
+  document.getElementById('wod-def').textContent = today.def[CURRENT_LANG] || today.def.en;
+}
+showWordOfDay();
+
+/* ---------- VERNISSAGE ORIGINALS: a pool of articles written by the
+   editorial team, illustrated with local SVG icons (no external dependency,
+   so no risk of a broken image). 3 different articles show up each day,
+   automatically rotated based on the date — no manual work required. ---------- */
+function svgIcon(inner){
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+      <rect width="600" height="400" fill="#241433"/>
+      <rect width="600" height="400" fill="#170b24" opacity="0.35"/>
+      ${inner}
+    </svg>`);
+}
+const ORIGINALS = [
+  {
+    title: {en:"Why provenance matters more than ever", fr:"Pourquoi la provenance compte plus que jamais"},
+    desc: {en:"As scientific authentication techniques multiply, a work's full history — its owners, exhibitions, restorations — is often becoming more decisive than the signature alone in establishing its value.",
+           fr:"À l'heure où les techniques d'authentification scientifique se multiplient, l'historique complet d'une œuvre — ses propriétaires, ses expositions, ses restaurations — devient souvent plus déterminant que la seule signature pour en établir la valeur."},
+    link: {en:"https://en.wikipedia.org/wiki/Provenance", fr:"https://fr.wikipedia.org/wiki/Provenance_(art)"},
+    img: svgIcon(`
+      <g fill="none" stroke="#ffc14d" stroke-width="6">
+        <rect x="180" y="110" width="240" height="180" rx="6"/>
+        <line x1="220" y1="150" x2="380" y2="150"/>
+        <line x1="220" y1="190" x2="380" y2="190"/>
+        <line x1="220" y1="230" x2="340" y2="230"/>
+      </g>
+      <circle cx="420" cy="270" r="14" fill="#ff4d6d"/>`)
+  },
+  {
+    title: {en:"The quiet return of figurative painting", fr:"Le retour discret de la peinture figurative"},
+    desc: {en:"After years dominated by abstraction and installation, more and more young artists are returning to portraiture and genre scenes — a deep trend driven as much by galleries as by art schools.",
+           fr:"Après des années dominées par l'abstraction et l'installation, de plus en plus de jeunes artistes reviennent vers le portrait et la scène de genre — un mouvement de fond porté autant par les galeries que par les écoles d'art."},
+    link: {en:"https://en.wikipedia.org/wiki/Figurative_art", fr:"https://fr.wikipedia.org/wiki/Art_figuratif"},
+    img: svgIcon(`
+      <circle cx="260" cy="160" r="50" fill="#ffffff" opacity="0.92"/>
+      <path d="M190 320 C190 250 220 215 260 215 C300 215 330 250 330 320 Z" fill="#ffffff" opacity="0.92"/>
+      <rect x="370" y="120" width="90" height="120" fill="none" stroke="#4d9bff" stroke-width="5"/>`)
+  },
+  {
+    title: {en:"Restitution: museums confronting their colonial collections", fr:"Restitutions : les musées face à leurs collections coloniales"},
+    desc: {en:"Benin, Ethiopia, Nigeria: the list of restitution claims keeps growing, and more and more Western institutions are now choosing to return certain works rather than wait for a court ruling.",
+           fr:"Bénin, Éthiopie, Nigeria : la liste des demandes de restitution s'allonge, et de plus en plus d'institutions occidentales choisissent désormais de rendre certaines œuvres plutôt que d'attendre une décision judiciaire."},
+    link: {en:"https://en.wikipedia.org/wiki/Cultural_repatriation", fr:"https://fr.wikipedia.org/wiki/Restitution_des_biens_culturels"},
+    img: svgIcon(`
+      <path d="M220 280 L220 180 L300 130 L380 180 L380 280 Z" fill="none" stroke="#1fd3a2" stroke-width="6"/>
+      <line x1="190" y1="280" x2="410" y2="280" stroke="#1fd3a2" stroke-width="6"/>
+      <circle cx="300" cy="200" r="16" fill="#e8ff3c"/>`)
+  },
+  {
+    title: {en:"Artificial intelligence: tool or threat for artists?", fr:"Intelligence artificielle : outil ou menace pour les artistes ?"},
+    desc: {en:"Between AI-assisted restoration software, image generation, and ongoing copyright debates, AI is settling into both studios and auction rooms — without anyone yet agreeing on the rules of the game.",
+           fr:"Entre logiciels de restauration assistée, génération d'images et débats sur le droit d'auteur, l'IA s'installe dans les ateliers comme dans les salles de ventes — sans que personne ne s'accorde encore sur les règles du jeu."},
+    link: {en:"https://en.wikipedia.org/wiki/Artificial_intelligence_art", fr:"https://fr.wikipedia.org/wiki/Art_g%C3%A9n%C3%A9r%C3%A9_par_intelligence_artificielle"},
+    img: svgIcon(`
+      <circle cx="300" cy="200" r="70" fill="none" stroke="#9b5cff" stroke-width="6"/>
+      <circle cx="300" cy="200" r="10" fill="#9b5cff"/>
+      <circle cx="240" cy="150" r="8" fill="#ff4d6d"/>
+      <circle cx="360" cy="150" r="8" fill="#ffc14d"/>
+      <circle cx="240" cy="250" r="8" fill="#1fd3a2"/>
+      <circle cx="360" cy="250" r="8" fill="#4d9bff"/>`)
+  },
+  {
+    title: {en:"Outsider art enters the mainstream market", fr:"L'art brut s'installe dans le marché mainstream"},
+    desc: {en:"Long confined to the margins, art made outside academic circles — self-taught artists, psychiatric patients, visionary creators — is now drawing institutional collectors and major auction houses.",
+           fr:"Longtemps cantonné aux marges, l'art produit hors des circuits académiques — autodidactes, artistes psychiatriques, créateurs visionnaires — attire désormais des collectionneurs institutionnels et de grandes maisons de ventes."},
+    link: {en:"https://en.wikipedia.org/wiki/Outsider_art", fr:"https://fr.wikipedia.org/wiki/Art_brut"},
+    img: svgIcon(`
+      <path d="M180 300 C200 200 240 140 300 140 C360 140 400 200 420 300 Z" fill="none" stroke="#ff8a3d" stroke-width="6"/>
+      <circle cx="260" cy="220" r="10" fill="#ff4d6d"/>
+      <circle cx="340" cy="240" r="8" fill="#1fd3a2"/>
+      <circle cx="300" cy="190" r="6" fill="#e8ff3c"/>`)
+  },
+  {
+    title: {en:"Why art fairs have become unavoidable", fr:"Pourquoi les foires d'art sont devenues incontournables"},
+    desc: {en:"Art Basel, Frieze, FIAC... fairs now account for a growing share of galleries' revenue. For many dealers, showing up is no longer optional — it's a condition of survival.",
+           fr:"Art Basel, Frieze, FIAC... les foires concentrent désormais une part croissante du chiffre d'affaires des galeries. Pour beaucoup de marchands, y être présent n'est plus une option mais une condition de survie."},
+    link: {en:"https://en.wikipedia.org/wiki/Art_fair", fr:"https://fr.wikipedia.org/wiki/Foire_d%27art"},
+    img: svgIcon(`
+      <rect x="170" y="160" width="100" height="130" fill="none" stroke="#4d9bff" stroke-width="5"/>
+      <rect x="290" y="130" width="100" height="160" fill="none" stroke="#ff5d8f" stroke-width="5"/>
+      <rect x="410" y="180" width="80" height="110" fill="none" stroke="#ffc14d" stroke-width="5"/>`)
+  }
+];
+function showOriginals(){
+  const grid = document.getElementById('originals-grid');
+  const status = document.getElementById('originals-status');
+  const dayIndex = Math.floor(Date.now() / 86400000);
+  const n = ORIGINALS.length;
+  const picks = [dayIndex % n, (dayIndex + 1) % n, (dayIndex + 2) % n].map(i => ORIGINALS[i]);
+  status.textContent = t('originals.status');
+  grid.innerHTML = picks.map((item, i) => `
+    <a class="news-card" href="${item.link[CURRENT_LANG] || item.link.en}" target="_blank" rel="noopener">
+      <div class="news-img">${imgTag(item.img, 640, item.title[CURRENT_LANG] || item.title.en)}</div>
+      <div class="news-card-body">
+        <div class="lot">${t('originals.lot')} — ${t('card.lot')} ${String(i+1).padStart(2,'0')}</div>
+        <h3>${item.title[CURRENT_LANG] || item.title.en}</h3>
+        <p>${item.desc[CURRENT_LANG] || item.desc.en}</p>
+        <div class="src"><span>Vernissage</span><span>↗</span></div>
+      </div>
+    </a>
+  `).join('');
+}
+showOriginals();
+
 loadNews();
 
-/* ---------- BOUTIQUE : exemples reliés à Redbubble ---------- */
+/* ---------- JEUNES ARTISTES : flux dédiés aux talents émergents ---------- */
+function renderYoung(finalItems){
+  window.__lastYoungItems = finalItems;
+  const grid = document.getElementById('young-grid');
+  const status = document.getElementById('young-status');
+  status.textContent = CURRENT_LANG==='fr'
+    ? `${finalItems.length} découvertes, directement depuis It's Nice That et Colossal.`
+    : `${finalItems.length} discoveries, straight from It's Nice That and Colossal.`;
+  grid.innerHTML = padToGrid(finalItems, 3).map(item=>`
+    <a class="young-card" href="${item.link}" target="_blank" rel="noopener">
+      <div class="young-img">${imgTag(item.img, 460, item.title)}</div>
+      <div class="young-body">
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+        <div class="src"><span>${item.source}</span><span>↗</span></div>
+      </div>
+    </a>
+  `).join('');
+}
+async function loadYoungArtists(){
+  const status = document.getElementById('young-status');
+
+  const cached = getCache('vernissage-young');
+  if(cached){ renderYoung(cached); return; }
+
+  let items = [];
+
+  await Promise.all(YOUNG_ARTIST_FEEDS.map(async feed=>{
+    try{
+      const res = await fetchWithTimeout('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed.url));
+      const data = await res.json();
+      if(data.status === 'ok' && data.items){
+        data.items.slice(0,6).forEach(item=>{
+          let img = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
+          if(!img){
+            const match = (item.description||'').match(/<img[^>]+src="([^">]+)"/);
+            if(match) img = match[1];
+          }
+          if(img){
+            items.push({
+              title: item.title,
+              desc: (item.description||'').replace(/<[^>]*>/g,'').slice(0,120) + '…',
+              link: item.link,
+              source: feed.name,
+              img: img,
+              date: item.pubDate
+            });
+          }
+        });
+      }
+    }catch(e){}
+  }));
+
+  items.sort((a,b)=> new Date(b.date) - new Date(a.date));
+
+  if(items.length === 0){
+    status.textContent = CURRENT_LANG==='fr' ? "Flux temporairement indisponibles." : "Feeds are temporarily unavailable.";
+    return;
+  }
+
+  const finalItems = items.slice(0,6);
+  setCache('vernissage-young', finalItems);
+  renderYoung(finalItems);
+}
+loadYoungArtists();
+
+/* ---------- ARCHITECTURE : flux ArchDaily & Dezeen, avec cache pour la rapidité ---------- */
+function renderArch(finalItems){
+  window.__lastArchItems = finalItems;
+  const grid = document.getElementById('arch-grid');
+  const status = document.getElementById('arch-status');
+  status.textContent = CURRENT_LANG==='fr'
+    ? `${finalItems.length} projets, directement depuis ArchDaily et Dezeen.`
+    : `${finalItems.length} projects, straight from ArchDaily and Dezeen.`;
+  grid.innerHTML = padToGrid(finalItems, 3).map(item=>`
+    <a class="young-card" href="${item.link}" target="_blank" rel="noopener">
+      <div class="young-img">${imgTag(item.img, 460, item.title)}</div>
+      <div class="young-body">
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+        <div class="src"><span>${item.source}</span><span>↗</span></div>
+      </div>
+    </a>
+  `).join('');
+}
+async function loadArchitecture(){
+  const status = document.getElementById('arch-status');
+
+  const cached = getCache('vernissage-arch');
+  if(cached){ renderArch(cached); return; }
+
+  let items = [];
+  await Promise.all(ARCHITECTURE_FEEDS.map(async feed=>{
+    try{
+      const res = await fetchWithTimeout('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed.url));
+      const data = await res.json();
+      if(data.status === 'ok' && data.items){
+        data.items.slice(0,6).forEach(item=>{
+          let img = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
+          if(!img){
+            const match = (item.description||'').match(/<img[^>]+src="([^">]+)"/);
+            if(match) img = match[1];
+          }
+          if(img){
+            items.push({
+              title: item.title,
+              desc: (item.description||'').replace(/<[^>]*>/g,'').slice(0,120) + '…',
+              link: item.link,
+              source: feed.name,
+              img: img,
+              date: item.pubDate
+            });
+          }
+        });
+      }
+    }catch(e){}
+  }));
+
+  items.sort((a,b)=> new Date(b.date) - new Date(a.date));
+
+  if(items.length === 0){
+    status.textContent = CURRENT_LANG==='fr' ? "Flux temporairement indisponibles." : "Feeds are temporarily unavailable.";
+    return;
+  }
+
+  const finalItems = items.slice(0,6);
+  setCache('vernissage-arch', finalItems);
+  renderArch(finalItems);
+}
+loadArchitecture();
+
+/* ---------- BOUTIQUE : œuvres du domaine public (légales), source citée ---------- */
+/* En attendant la vraie intégration produit Redbubble, ces visuels sont de véritables
+   reproductions d'œuvres tombées dans le domaine public (droits d'auteur expirés) — donc
+   sans aucun risque légal, à la différence d'images contemporaines protégées. */
 const PIECES = [
-  { cat:"Impression giclée", name:"Étude en bleu de Prusse", price:"à partir de 24 €", q:"abstract blue art print" },
-  { cat:"Affiche", name:"Nature morte minimale", price:"à partir de 18 €", q:"minimalist still life poster" },
-  { cat:"Toile", name:"Paysage onirique", price:"à partir de 45 €", q:"dreamlike landscape canvas art" },
-  { cat:"Impression giclée", name:"Composition géométrique", price:"à partir de 22 €", q:"geometric abstract art print" }
+  {
+    cat:{en:"Giclée print", fr:"Impression giclée"}, name:{en:"The Starry Night", fr:"La Nuit étoilée"}, artist:"Vincent van Gogh, 1889",
+    priceVal:24, q:"starry night van gogh poster",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg?width=900",
+    source:{en:"Wikimedia Commons — public domain", fr:"Wikimedia Commons — domaine public"}
+  },
+  {
+    cat:{en:"Japanese woodblock print", fr:"Estampe japonaise"}, name:{en:"The Great Wave off Kanagawa", fr:"La Grande Vague de Kanagawa"}, artist:"Hokusai, c. 1831",
+    priceVal:18, q:"great wave kanagawa hokusai poster",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/The_Great_Wave_off_Kanagawa.jpg?width=900",
+    source:{en:"Wikimedia Commons — public domain", fr:"Wikimedia Commons — domaine public"}
+  },
+  {
+    cat:{en:"Canvas", fr:"Toile"}, name:{en:"The Kiss", fr:"Le Baiser"}, artist:"Gustav Klimt, 1908",
+    priceVal:45, q:"the kiss klimt canvas",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg?width=900",
+    source:{en:"Wikimedia Commons — public domain", fr:"Wikimedia Commons — domaine public"}
+  },
+  {
+    cat:{en:"Giclée print", fr:"Impression giclée"}, name:{en:"Water Lilies", fr:"Les Nymphéas"}, artist:"Claude Monet, 1906",
+    priceVal:22, q:"water lilies monet print",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet_-_Water_Lilies_-_1906,_Ryerson.jpg?width=900",
+    source:{en:"Wikimedia Commons — public domain", fr:"Wikimedia Commons — domaine public"}
+  }
 ];
 
-document.getElementById('shop-grid').innerHTML = PIECES.map(p=>`
-  <div class="piece">
-    <div class="piece-img">${p.name}</div>
-    <div class="piece-info">
-      <div class="cat">${p.cat}</div>
-      <h4>${p.name}</h4>
-      <div class="price">${p.price}</div>
-      <a class="btn-bid" href="https://www.redbubble.com/shop?query=${encodeURIComponent(p.q)}" target="_blank" rel="noopener">Voir sur Redbubble</a>
+function renderShop(){
+  document.getElementById('shop-grid').innerHTML = PIECES.map(p=>`
+    <div class="piece">
+      <div class="piece-img">${imgTag(p.img, 420, p.name[CURRENT_LANG] || p.name.en)}</div>
+      <div class="piece-info">
+        <div class="cat">${p.cat[CURRENT_LANG] || p.cat.en}</div>
+        <h4>${p.name[CURRENT_LANG] || p.name.en}</h4>
+        <div class="artist">${p.artist}</div>
+        <div class="price">${t('shop.from')}${p.priceVal}${CURRENT_LANG==='fr' ? ' €' : ''}</div>
+        <a class="btn-bid" href="https://www.redbubble.com/shop?query=${encodeURIComponent(p.q)}" target="_blank" rel="noopener">${t('shop.viewBtn')}</a>
+        <div class="credit">${p.source[CURRENT_LANG] || p.source.en}</div>
+      </div>
     </div>
-  </div>
-`).join('');
+  `).join('');
+}
+renderShop();
 </script>
 
 </body>
