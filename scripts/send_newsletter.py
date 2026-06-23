@@ -110,7 +110,10 @@ def build_email_html(articles):
 
 def send_email(subject, html_body):
     url = "https://api.buttondown.com/v1/emails"
-    headers = {"Authorization": f"Token {BUTTONDOWN_API_KEY}"}
+    headers = {
+       "Authorization": f"Token {BUTTONDOWN_API_KEY}",
+       "X-Buttondown-Live-Dangerously": "true",
+   }
     data = {"subject": subject, "body": html_body, "status": "about_to_send"}
     resp = requests.post(url, headers=headers, json=data, timeout=20)
     print("Statut Buttondown :", resp.status_code)
