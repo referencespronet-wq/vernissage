@@ -1,0 +1,27 @@
+name: Newsletter hebdomadaire Vernissage
+
+on:
+  schedule:
+    # Tous les lundis à 9h00 (heure de Paris, soit 8h en UTC l'été, 7h ou 8h selon la saison)
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # permet aussi de le lancer manuellement depuis l'onglet "Actions" pour tester
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installer les dépendances
+        run: pip install requests
+
+      - name: Envoyer la newsletter
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: python scripts/send_newsletter.py
